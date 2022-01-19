@@ -21,3 +21,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/.idea/.gitignore
+/.idea/jsLinters/eslint.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/portfolio-smccourtb.iml
+/.idea/prettier.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/dictionaries/shawn.xml
+/.idea/vcs.xml
