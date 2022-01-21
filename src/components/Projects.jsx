@@ -1,12 +1,22 @@
-import { Header } from "../styles/shared-styles";
-import { Container } from "../App";
+import { Container, Header } from "../styles/shared-styles";
 import { Project } from "./Project";
+import styled from "styled-components/macro";
 
-export const Projects = () => {
+const ProjectContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-evenly;
+  font-size: 12px;
+  gap: 2em;
+`;
+
+export const Projects = ({ data }) => {
+  const projects = data.map((project) => <Project projectData={project} />);
   return (
     <Container primary center column>
       <Header>Projects</Header>
-      <Project />
+      <ProjectContainer>{projects}</ProjectContainer>
     </Container>
   );
 };
