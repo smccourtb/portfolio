@@ -177,25 +177,37 @@ const Button = styled.button`
   }
 `;
 
-export const Project = () => {
+export const Project = ({ projectData }) => {
+  const { name, description, image, tools, links } = { ...projectData };
+
   return (
-    <Container>
+    <ProjectContainer>
       <Front>
         <Content>
-          <h3>Hakkam Abdullah</h3>
-          <p>
-            I am a graphic designer and art director. I am as well specialised
-            in front end web design, user experience and creating identities.
-            Throughout my career, I have worked with companies of all shapes and
-            sizes that enriched my experience
-          </p>
+          <ProjectScreenShot image={image} />
+          <TextContainer>
+            <ProjectTitle primary>{name}</ProjectTitle>
+            <ProjectDescription>{description}</ProjectDescription>
+          </TextContainer>
         </Content>
       </Front>
+
       <Back>
-        <Content>
-          <h3>Contact Me</h3>
-        </Content>
+        <ToolsTitle>Built With</ToolsTitle>
+        <UpperContent>
+          <Tools data={tools} />
+        </UpperContent>
       </Back>
-    </Container>
+      <LowerBack>
+        Take a closer look
+        <LowerContent>
+          {Object.keys(links).map((link) => (
+            <Button as={"a"} href={links[link]}>
+              {link}
+            </Button>
+          ))}
+        </LowerContent>
+      </LowerBack>
+    </ProjectContainer>
   );
 };
