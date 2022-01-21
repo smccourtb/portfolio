@@ -76,7 +76,7 @@ const AutoComplete = styled.div`
 `;
 
 const Container = styled.div`
-  font-family: "Paytone One", serif;
+  font-family: inherit;
   display: inline-block;
 `;
 

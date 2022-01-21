@@ -1,8 +1,8 @@
-import { Container } from "../App";
 import styled, { css, keyframes } from "styled-components/macro";
 import { Letter } from "./Letter";
 import { useState } from "react";
 import { Typing } from "./Typing";
+import { Container } from "../styles/shared-styles";
 
 const slide = keyframes`
   0% {
@@ -39,7 +39,7 @@ const OpeningHeader = styled.h1`
 `;
 
 const JobTitle = styled.p`
-  font-family: "Railway", sans-serif;
+  font-family: "Raleway", sans-serif;
   color: ${(props) => props.theme.colors.darkAccent};
   animation: ${slide} 2s 6s ease-in-out;
   text-align: right;
@@ -57,16 +57,23 @@ export const Greeting = () => {
     text.split("").map((letter, idx) => <Letter key={idx} letter={letter} />);
 
   return (
-    <Container primary column>
+    <Container primary column fullPage>
       <OpeningHeader>
         {introLetters("Hi!")}
         <br />
-        <div style={{ display: "flex", width: "100%", gap: ".1em" }}>
-          <div>{introLetters("My")}</div>
-          <div>{introLetters("Name")}</div>
-          <div>{introLetters("Is")}</div>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            gap: ".1em",
+            fontFamily: "inherit",
+          }}
+        >
+          <div style={{ fontFamily: "inherit" }}>{introLetters("My")}</div>
+          <div style={{ fontFamily: "inherit" }}>{introLetters("Name")}</div>
+          <div style={{ fontFamily: "inherit" }}>{introLetters("Is")}</div>
 
-          <div style={{ display: "flex", fontFamily: "Paytone One" }}>
+          <div style={{ display: "flex", fontFamily: "inherit" }}>
             {state ? (
               introLetters("Shawnathan.")
             ) : (

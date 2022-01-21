@@ -17,6 +17,8 @@ const squash = keyframes`
 `;
 
 const GreetingLetter = styled.span`
+  font-family: inherit;
+
   display: inline-block;
   color: ${({ playIntro, theme: { colors } }) => playIntro && colors.mainBrand};
   animation: ${({ playIntro }) =>
