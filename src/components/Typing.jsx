@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components/macro";
-import { logDOM } from "@testing-library/react";
 
 const TypingEffect = keyframes`
   from {
@@ -49,9 +48,10 @@ const showText = keyframes`
   100% {
     opacity: 30%;
   }
-
 `;
+
 const TypedOut = styled.div`
+  font-family: inherit;
   overflow: hidden;
   border-right: 0.1em solid orange;
   width: 0;
@@ -62,6 +62,7 @@ const TypedOut = styled.div`
 
 const FinishType = styled.div`
   overflow: hidden;
+  font-family: inherit;
   border-right: 0.1em solid orange;
   width: 0;
   animation: ${byeCaret} 2.4s, ${complete} 0.2s 4s forwards,
@@ -69,6 +70,7 @@ const FinishType = styled.div`
 `;
 
 const AutoComplete = styled.div`
+  font-family: inherit;
   opacity: 0;
   width: 0;
   animation: ${showText} 1.65s 2.4s 1;
