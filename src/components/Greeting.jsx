@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from "styled-components/macro";
+import styled, { keyframes } from "styled-components/macro";
 import { Letter } from "./Letter";
 import { useState } from "react";
 import { Typing } from "./Typing";

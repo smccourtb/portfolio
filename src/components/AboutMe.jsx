@@ -1,6 +1,6 @@
 import { Container, Header } from "../styles/shared-styles";
 import ProfilePic from "../assets/images/profile.jpg";
-import styled, { keyframes } from "styled-components/macro";
+import styled from "styled-components/macro";
 import Javascript from "../assets/icons/logo-javascript.svg";
 import HTML5 from "../assets/icons/html-1.svg";
 import CSS from "../assets/icons/css-3.svg";
