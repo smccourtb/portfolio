@@ -73,7 +73,8 @@ export const Contact = () => {
         <input
           type="text"
           value={data.name}
-          id={"name"}
+          id="name"
+          name="name"
           onChange={handleChange("name")}
         />
         <label htmlFor="email">Email</label>
@@ -81,14 +82,16 @@ export const Contact = () => {
         <input
           type="email"
           value={data.email}
-          id={"email"}
+          id="email"
+          name="email"
           onChange={handleChange("email")}
         />
         <label htmlFor="message">Message</label>
 
         <textarea
           value={data.message}
-          id={"message"}
+          id="message"
+          name="message"
           onChange={handleChange("message")}
         />
         <button type="submit">Send</button>
