@@ -1,4 +1,55 @@
 import { useState } from "react";
+import styled from "styled-components/macro";
+
+const StyledInput = styled.input`
+  background-color: transparent;
+  //border-radius: 0.25em;
+  border: 1px solid black;
+  height: 2em;
+  padding: 0.5em;
+  box-shadow: 0.25em 0.25em 0 0.1em black;
+
+  :invalid,
+  :focus,
+  :active {
+    outline: black;
+  }
+
+  ::placeholder {
+    font-size: 0.75em;
+    font-family: "Rock Salt", serif;
+  }
+`;
+
+const StyledTextArea = styled.textarea`
+  background-color: transparent;
+  border: 1px solid black;
+  resize: none;
+  height: 10em;
+  padding: 0.5em;
+  box-shadow: 0.25em 0.25em 0 0.1em black;
+
+  ::placeholder {
+    font-size: 0.75em;
+    font-family: "Rock Salt", serif;
+    line-height: 15px;
+  }
+
+  :invalid,
+  :focus,
+  :active {
+    outline: black;
+  }
+`;
+
+const StyledButton = styled.button`
+  background-color: transparent;
+  border-radius: 0.25em;
+  border: 1px solid black;
+  height: 2em;
+  width: 50%;
+  margin-left: auto;
+`;
 
 const encode = (data) => {
   return Object.keys(data)
@@ -30,38 +81,49 @@ const ContactForm = () => {
   };
   return (
     <form
-      style={{ display: "flex", flexDirection: "column" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1em",
+      }}
       name="contact"
       method="post"
       onSubmit={handleSubmit}
     >
       <input type="hidden" name="form-name" value="contact" />
-      <label htmlFor="name">Name</label>
-      <input
-        type="text"
-        value={data.name}
-        id="name"
-        name="name"
-        onChange={handleChange("name")}
-      />
-      <label htmlFor="email">Email</label>
+      <label htmlFor="name">
+        <StyledInput
+          placeholder="Name"
+          type="text"
+          value={data.name}
+          id="name"
+          name="name"
+          onChange={handleChange("name")}
+        />
+      </label>
 
-      <input
-        type="email"
-        value={data.email}
-        id="email"
-        name="email"
-        onChange={handleChange("email")}
-      />
-      <label htmlFor="message">Message</label>
+      <label htmlFor="email">
+        <StyledInput
+          type="email"
+          placeholder="Email"
+          value={data.email}
+          id="email"
+          name="email"
+          onChange={handleChange("email")}
+        />
+      </label>
 
-      <textarea
-        value={data.message}
-        id="message"
-        name="message"
-        onChange={handleChange("message")}
-      />
-      <button type="submit">Send</button>
+      <label htmlFor="message">
+        <StyledTextArea
+          value={data.message}
+          id="message"
+          name="message"
+          placeholder="Message"
+          onChange={handleChange("message")}
+        />
+      </label>
+
+      <StyledButton type="submit">Send</StyledButton>
     </form>
   );
 };
