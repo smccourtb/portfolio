@@ -5,6 +5,8 @@ import PaytoneOneWOFF from "../assets/font/PaytoneOne/PaytoneOne-Regular.woff";
 import PaytoneOneWOFF2 from "../assets/font/PaytoneOne/PaytoneOne-Regular.woff2";
 import RobotoSlabWOFF from "../assets/font/roboto-slab/RobotoSlab-SemiBold.woff";
 import RobotoSlabWOFF2 from "../assets/font/roboto-slab/RobotoSlab-SemiBold.woff2";
+import RockSaltWOFF from "../assets/font/rock-salt/RockSalt-Regular.woff";
+import RockSaltWOFF2 from "../assets/font/rock-salt/RockSalt-Regular.woff2";
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -28,18 +30,18 @@ export const GlobalStyle = createGlobalStyle`
   html, body {
     scroll-snap-type: y mandatory;
     font-size: 15px;
-    @media (min-width: 600px) {
-      font-size: 24px;
-    }
-    @media (min-width: 960px) {
-      font-size: 30px;
-    }
-    @media (min-width: 1280px) {
-      font-size: 36px;
-    }
-    @media (min-width: 1920px) {
-      font-size: 42px;
-    }
+    //@media (min-width: 600px) {
+    //  font-size: 24px;
+    //}
+    //@media (min-width: 960px) {
+    //  font-size: 30px;
+    //}
+    //@media (min-width: 1280px) {
+    //  font-size: 36px;
+    //}
+    //@media (min-width: 1920px) {
+    //  font-size: 42px;
+    //}
   }
 
   @font-face {
@@ -56,6 +58,15 @@ export const GlobalStyle = createGlobalStyle`
     src: url(${RobotoSlabWOFF2}) format('woff2'),
     url(${RobotoSlabWOFF}) format(' woff ');
     font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Rock Salt';
+    src: url(${RockSaltWOFF}) format('woff'),
+    url(${RockSaltWOFF2}) format('woff2');
+    font-weight: normal;
     font-style: normal;
     font-display: swap;
   }
