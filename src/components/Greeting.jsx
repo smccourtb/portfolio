@@ -33,9 +33,42 @@ const grow = keyframes`
   }
 `;
 
+const Pronounce = keyframes`
+  from {
+    color: inherit;
+  }
+  to {
+    color: #f04d54
+  }
+`;
+
+const drawnPronounce = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
+  }
+`;
+
 const OpeningHeader = styled.h1`
   font-family: "Paytone One", serif;
   font-size: 1.5em;
+  align-self: flex-start;
+`;
+
+const Pronunciation = styled.div`
+  font-family: ${({ drawn }) => (drawn ? "Rock Salt" : "inherit")};
+  animation: ${Pronounce} 0.7s ease-in-out;
+  animation-delay: ${({ delay }) => delay};
+  opacity: ${({ drawn }) => drawn && "35%"};
+`;
+
+const DrawnPronunciation = styled.div`
+  font-family: "Rock Salt", serif;
+  animation: ${drawnPronounce} 0.7s ease-in-out;
+  animation-delay: ${({ delay }) => delay};
+  opacity: 0;
 `;
 
 const JobTitle = styled.p`
@@ -57,7 +90,14 @@ export const Greeting = () => {
     text.split("").map((letter, idx) => <Letter key={idx} letter={letter} />);
 
   return (
-    <Container primary column fullPage>
+    <Container
+      primary
+      column
+      fullPage
+      center
+      style={{ width: "100%", paddingLeft: "15%" }}
+      id={"greeting"}
+    >
       <OpeningHeader>
         {introLetters("Hi!")}
         <br />
@@ -75,7 +115,15 @@ export const Greeting = () => {
 
           <div style={{ display: "flex", fontFamily: "inherit" }}>
             {state ? (
-              introLetters("Shawnathan.")
+              <>
+                <Pronunciation delay={"5s"}>
+                  {introLetters("Shaw")}
+                </Pronunciation>
+                <Pronunciation delay={"6s"}>{introLetters("na")}</Pronunciation>
+                <Pronunciation delay={"7s"}>
+                  {introLetters("than.")}
+                </Pronunciation>
+              </>
             ) : (
               <Typing setState={setState} />
             )}
@@ -85,6 +133,11 @@ export const Greeting = () => {
       <div style={{ width: "100%", display: "flex", position: "relative" }}>
         <JobTitle>aspiring web developer</JobTitle>
         <Period>.</Period>
+      </div>
+      <div style={{ fontSize: "2em", paddingTop: "2em" }}>
+        <DrawnPronunciation delay={"9s"}>Shaw</DrawnPronunciation>
+        <DrawnPronunciation delay={"10s"}>nuh</DrawnPronunciation>
+        <DrawnPronunciation delay={"11s"}>then</DrawnPronunciation>
       </div>
     </Container>
   );

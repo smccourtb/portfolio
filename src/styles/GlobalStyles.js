@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
     font-display: swap;
+
   }
 
   * {
@@ -28,7 +29,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html, body {
-    scroll-snap-type: y mandatory;
+    //scroll-snap-type: y mandatory;
     font-size: 15px;
     //@media (min-width: 600px) {
     //  font-size: 24px;
@@ -42,6 +43,14 @@ export const GlobalStyle = createGlobalStyle`
     //@media (min-width: 1920px) {
     //  font-size: 42px;
     //}
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    transition: all .8s cubic-bezier(0.54, 0.35, 0.29, 0.99);
+
+    color: #fff;
+    overflow: hidden;
   }
 
   @font-face {

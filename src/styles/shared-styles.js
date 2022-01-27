@@ -7,7 +7,9 @@ export const Header = styled.h2`
 `;
 
 export const Container = styled.section`
-  height: ${({ fullPage }) => (fullPage ? "100vh" : "unset")};
+  position: absolute;
+
+  height: ${({ fullPage }) => (fullPage ? "90%" : "unset")};
   width: 100%;
   color: ${({ primary, theme: { colors } }) =>
     primary ? colors.lightShade : colors.darkShade};
@@ -18,7 +20,7 @@ export const Container = styled.section`
   align-items: ${({ center }) => (center ? "center" : "flex-start")};
   justify-content: ${({ space }) => (space ? "space-between" : "unset")};
 
-  scroll-snap-align: start;
+  //scroll-snap-align: start;
   padding: ${({ padding }) => (!padding ? "1.6em" : "unset")};
   font-size: 1em;
 `;

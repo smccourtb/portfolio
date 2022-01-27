@@ -44,24 +44,33 @@ const Logo = styled.img`
 
 export const Contact = () => {
   return (
-    <Container column fullPage padding style={{ position: "absolute" }}>
+    <Container column fullPage padding style={{ position: "relative" }}>
+      <Header style={{ padding: "1em 0 0 1em" }}>Contact Me</Header>
+
       <Container
         column
         center
         style={{
           gap: "1em",
           height: "100%",
+          justifyContent: "space-between",
+          padding: "1em 1em 5px 1em",
         }}
       >
-        <Header>Contact Me</Header>
         <div style={{ display: "flex" }}>
-          <p style={{ fontSize: ".9em" }}>
+          <p style={{ fontSize: ".9em", textAlign: "center" }}>
             If you'd like to reach out, I'd love to hear from you!
           </p>
         </div>
         <ContactForm />
-        <p style={{ marginTop: "auto", alignSelf: "flex-start" }}>
-          Or you can check out what i've been up to:
+        <p
+          style={{
+            alignSelf: "flex-start",
+            fontSize: ".9em",
+            paddingRight: "2em",
+          }}
+        >
+          Or check out what i've been up to.
         </p>
         <Arrow
           firstColor="rgb(52, 53, 64)"
