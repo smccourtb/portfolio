@@ -3,16 +3,16 @@ import styled from "styled-components/macro";
 
 const StyledInput = styled.input`
   background-color: transparent;
-  //border-radius: 0.25em;
-  border: 1px solid black;
+  border: 1px solid #343540;
   height: 2em;
-  padding: 0.5em;
-  box-shadow: 0.25em 0.25em 0 0.1em black;
+  width: 100%;
+  padding: 1em 0.5em;
+  box-shadow: 0.25em 0.25em 0 0.1em #343540;
 
   :invalid,
   :focus,
   :active {
-    outline: black;
+    outline: #343540;
   }
 
   ::placeholder {
@@ -23,11 +23,13 @@ const StyledInput = styled.input`
 
 const StyledTextArea = styled.textarea`
   background-color: transparent;
-  border: 1px solid black;
+  border: 1px solid #343540;
   resize: none;
   height: 10em;
+  width: 100%;
+
   padding: 0.5em;
-  box-shadow: 0.25em 0.25em 0 0.1em black;
+  box-shadow: 0.25em 0.25em 0 0.1em #343540;
 
   ::placeholder {
     font-size: 0.75em;
@@ -38,17 +40,44 @@ const StyledTextArea = styled.textarea`
   :invalid,
   :focus,
   :active {
-    outline: black;
+    outline: #343540;
   }
 `;
 
 const StyledButton = styled.button`
   background-color: transparent;
-  border-radius: 0.25em;
-  border: 1px solid black;
-  height: 2em;
   width: 50%;
   margin-left: auto;
+
+  border: 1px solid #343540;
+  overflow: hidden;
+  position: relative;
+  color: #343540;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.5em;
+
+  :after {
+    background: #343540;
+    content: "";
+    height: 155px;
+    left: -75px;
+    opacity: 0.2;
+    position: absolute;
+    top: -50px;
+    transform: rotate(35deg);
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    width: 50px;
+    z-index: 10;
+  }
+
+  :hover {
+    :after {
+      left: 120%;
+      transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+  }
 `;
 
 const encode = (data) => {
@@ -84,7 +113,8 @@ const ContactForm = () => {
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "1em",
+        gap: "1.5em",
+        width: "75%",
       }}
       name="contact"
       method="post"
@@ -123,7 +153,9 @@ const ContactForm = () => {
         />
       </label>
 
-      <StyledButton type="submit">Send</StyledButton>
+      <StyledButton type="submit">
+        <span style={{ zIndex: "21" }}>Send</span>
+      </StyledButton>
     </form>
   );
 };
