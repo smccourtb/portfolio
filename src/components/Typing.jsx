@@ -11,10 +11,10 @@ const TypingEffect = keyframes`
 
 const complete = keyframes`
   from {
-    width: 100%
+    width: 100%;
   }
   to {
-    width: 100%
+    width: 100%;
   }
 `;
 
