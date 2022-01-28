@@ -1,69 +1,166 @@
-/*#p1 {*/
-/*    top: 9.99%;*/
-/*}*/
-
-#p3 {
-    overflow-y: scroll;
+html, body, .page {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    overflow: hidden;
 }
 
-/*#p2, #p3, #p4, #p5 {*/
-/*    top: -200%;*/
-/*}*/
 
-/*#p1 {*/
-/*    background: darkslateblue;*/
-/*}*/
+.page {
+    position: absolute;
+}
 
-/*#p2 {*/
-/*    background: tomato;*/
-/*}*/
+#p1 {
+    top: 0;
+}
 
-/*#p3 {*/
-/*    background: gold;*/
-/*}*/
+#p2, #p3, #p4, #p5 {
+    top: 200%;
+    transition: all .8s cubic-bezier(0.54, 0.35, 0.29, 0.99);
 
-/*#p4 {*/
-/*    background: deeppink;*/
-/*}*/
+}
 
-/*#p5 {*/
-/*    background: rebeccapurple;*/
-/*}*/
+#p1 {
+    background: darkslateblue;
+}
 
-/*#t2:target #p2,*/
-/*#t3:target #p3,*/
-/*#t4:target #p4,*/
-/*#t5:target #p5 {*/
-/*    transform: translateY(209.5%);*/
-/*    transition-delay: .4s !important;*/
-/*}*/
+#p2 {
+    background: tomato;
+}
 
-/*#t2:target #p1,*/
-/*#t3:target #p1,*/
-/*#t4:target #p1,*/
-/*#t5:target #p1 {*/
-/*    background: black;*/
-/*}*/
+#p3 {
+    background: rebeccapurple;
+    overflow: scroll;
+}
 
-/*#t2:target #p1 .icon,*/
-/*#t3:target #p1 .icon,*/
-/*#t4:target #p1 .icon,*/
-/*#t5:target #p1 .icon {*/
-/*    -webkit-filter: blur(3px);*/
-/*}*/
+#p4 {
+    background: deeppink;
+}
 
+#t2:target #p2,
+#t3:target #p3,
+#t4:target #p4 {
+    transform: translateY(-190%);
+    transition-delay: .4s !important;
+}
+
+#t2:target #p1,
+#t3:target #p1,
+#t4:target #p1 {
+    background: black;
+}
+
+#t2:target #p1 .icon,
+#t3:target #p1 .icon,
+#t4:target #p1 .icon {
+    -webkit-filter: blur(3px);
+}
+
+.icon {
+    color: #fff;
+    font-size: 1em;
+    display: block;
+}
+
+#menu .icon:hover {
+    opacity: 0.5;
+}
+
+#t2:target #menu .icon,
+#t3:target #menu .icon,
+#t4:target #menu .icon {
+    transform: scale(.6);
+    transition-delay: .25s;
+}
+
+#t2:target #dos,
+#t3:target #tres,
+#t4:target #cuatro {
+    transform: scale(1.2) !important;
+}
+
+#menu {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    margin: auto;
+    height: 10%;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+#menu .icon {
+    margin: 30px 0;
+    transition: all .5s ease-out !important;
+}
 
 a {
     text-decoration: none;
 }
 
+.page .icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform: translateY(360%);
+    transition: all .5s cubic-bezier(.25, 1, .5, 1.25);
+}
 
-/*#t2:target .page#p2 .icon,*/
-/*#t3:target .page#p3 .icon,*/
-/*#t4:target .page#p4 .icon,*/
-/*#t5:target .page#p5 .icon {*/
-/*    transform: translateX(0) !important;*/
+.page#p1 .icon {
+    transform: translateY(10%) !important;
+}
 
-/*    transition-delay: 1s;*/
-/*}*/
+#t2:target .page#p2 .icon,
+#t3:target .page#p3 .icon,
+#t4:target .page#p4 .icon {
+    transform: translateX(0) !important;
+    transition-delay: 1s;
+}
 
+@font-face {
+    font-family: 'Paytone One';
+    src: url("../assets/font/PaytoneOne/PaytoneOne-Regular.woff2") format('woff2'),
+    url("../assets/font/PaytoneOne/PaytoneOne-Regular.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url("../assets/font/roboto-slab/RobotoSlab-SemiBold.woff2") format('woff2'),
+    url("../assets/font/roboto-slab/RobotoSlab-SemiBold.woff") format(' woff ');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rock Salt';
+    src: url("../assets/font/rock-salt/RockSalt-Regular.woff") format('woff'),
+    url("../assets/font/rock-salt/RockSalt-Regular.woff2") format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url("../assets/font/Raleway/Raleway-Regular.woff2") format('woff2'),
+    url("../assets/font/Raleway/Raleway-Regular.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
