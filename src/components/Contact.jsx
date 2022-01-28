@@ -22,7 +22,7 @@ const Footer = styled.div`
     width: 19.5em;
     height: 6em;
     border-radius: 1.5em;
-    box-shadow: 10em 10em 0 200em #f04d54;
+    box-shadow: 10em 10em 0 200em #64e0dc;
   }
 
   :after {
@@ -44,41 +44,40 @@ const Logo = styled.img`
 
 export const Contact = () => {
   return (
-    <Container column fullPage padding style={{ position: "relative" }}>
-      <Header style={{ padding: "1em 0 0 1em" }}>Contact Me</Header>
-
-      <Container
-        column
-        center
+    <div className={"icon"}>
+      <div
         style={{
-          gap: "1em",
-          height: "100%",
-          justifyContent: "space-between",
-          padding: "1em 1em 5px 1em",
+          height: "75%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-evenly",
         }}
       >
-        <div style={{ display: "flex" }}>
-          <p style={{ fontSize: ".9em", textAlign: "center" }}>
+        <div>
+          <p
+            style={{ fontSize: ".9em", textAlign: "center", fontWeight: "700" }}
+          >
             If you'd like to reach out, I'd love to hear from you!
           </p>
         </div>
         <ContactForm />
-        <p
-          style={{
-            alignSelf: "flex-start",
-            fontSize: ".9em",
-            paddingRight: "2em",
-          }}
-        >
-          Or check out what i've been up to.
-        </p>
+
         <Arrow
           firstColor="rgb(52, 53, 64)"
           secondColor="white"
           fillPercentage={"59.4%"}
         />
-      </Container>
-
+      </div>
+      <p
+        style={{
+          fontSize: ".8em",
+          padding: "0 40% 1em 1em",
+          fontWeight: "700",
+        }}
+      >
+        Or check out what i've been up to.
+      </p>
       <Footer>
         <div
           style={{
@@ -105,6 +104,6 @@ export const Contact = () => {
           </a>
         </div>
       </Footer>
-    </Container>
+    </div>
   );
 };

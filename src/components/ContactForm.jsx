@@ -2,8 +2,8 @@ import { useState } from "react";
 import styled from "styled-components/macro";
 
 const StyledInput = styled.input`
-  background-color: transparent;
-  border: 1px solid #343540;
+  background-color: white;
+  border: 2px solid #343540;
   height: 2em;
   width: 100%;
   padding: 1em 0.5em;
@@ -22,8 +22,8 @@ const StyledInput = styled.input`
 `;
 
 const StyledTextArea = styled.textarea`
-  background-color: transparent;
-  border: 1px solid #343540;
+  background-color: white;
+  border: 2px solid #343540;
   resize: none;
   height: 10em;
   width: 100%;
@@ -49,21 +49,22 @@ const StyledButton = styled.button`
   width: 50%;
   margin-left: auto;
 
-  border: 1px solid #343540;
+  border: 2px solid white;
   overflow: hidden;
   position: relative;
-  color: #343540;
+  color: white;
   cursor: pointer;
   text-decoration: none;
   text-transform: uppercase;
   padding: 0.5em;
+  font-weight: 700;
 
   :after {
-    background: #343540;
+    background: white;
     content: "";
     height: 155px;
     left: -75px;
-    opacity: 0.2;
+    opacity: 0.5;
     position: absolute;
     top: -50px;
     transform: rotate(35deg);

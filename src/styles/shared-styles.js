@@ -7,8 +7,6 @@ export const Header = styled.h2`
 `;
 
 export const Container = styled.section`
-  position: absolute;
-
   height: ${({ fullPage }) => (fullPage ? "90%" : "unset")};
   width: 100%;
   color: ${({ primary, theme: { colors } }) =>

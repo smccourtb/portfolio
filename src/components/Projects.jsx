@@ -14,9 +14,8 @@ const ProjectContainer = styled.div`
 export const Projects = ({ data }) => {
   const projects = data.map((project) => <Project projectData={project} />);
   return (
-    <Container primary center column>
-      <Header>Projects</Header>
+    <div className={"icon"}>
       <ProjectContainer>{projects}</ProjectContainer>
-    </Container>
+    </div>
   );
 };

@@ -86,8 +86,8 @@ const ProjectScreenShot = styled.img`
   background-position: top center;
   box-shadow: black 0 2em 4em -2em;
 
-  animation: ${drift} 35s alternate infinite;
-  animation-timing-function: ease-in-out;
+  //animation: ${drift} 35s alternate infinite;
+  //animation-timing-function: ease-in-out;
 `;
 
 const Content = styled.div`

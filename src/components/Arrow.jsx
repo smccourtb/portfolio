@@ -4,7 +4,7 @@ const Arrow = ({ firstColor, secondColor, fillPercentage }) => {
       style={{
         position: "absolute",
         zIndex: "1",
-        bottom: "2.5em",
+        bottom: "4.75em",
         right: "0",
       }}
     >
