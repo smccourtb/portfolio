@@ -57,7 +57,7 @@ const TypedOut = styled.div`
   width: 0;
   z-index: 1;
   animation: ${TypingEffect} 1s 1s steps(5, end) forwards,
-    ${blink} 0.8s infinite, ${byeCaret} 100000s 2.4s;
+    ${blink} 0.8s infinite, ${byeCaret} 0.2s 2.4s forwards;
 `;
 
 const FinishType = styled.div`
@@ -66,36 +66,46 @@ const FinishType = styled.div`
   border-right: 0.1em solid orange;
   width: 0;
   animation: ${byeCaret} 2.4s, ${complete} 0.2s 4s forwards,
-    ${blink} 0.8s infinite, ${byeCaret} 10000s 5s;
+    ${blink} 0.8s infinite, ${byeCaret} 0.2s 6.3s forwards;
 `;
 
 const AutoComplete = styled.div`
   font-family: inherit;
   opacity: 0;
   width: 0;
-  animation: ${showText} 1.65s 2.4s 1;
+  animation: ${showText} 6.3s 2.5s;
   z-index: -2;
 `;
 
 const Container = styled.div`
   font-family: inherit;
-  display: inline-block;
+  //display: inline-block;
 `;
 
 export const Typing = ({ setState }) => {
   return (
-    <>
+    <div
+      style={{
+        fontFamily: "Paytone One",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <Container>
         <TypedOut>Shawn</TypedOut>
       </Container>
       <Container>
-        <AutoComplete onAnimationEnd={(e) => setState(true)}>
+        <AutoComplete
+          onAnimationEnd={(e) => {
+            setState(true);
+          }}
+        >
           athan.
         </AutoComplete>
       </Container>
       <Container>
         <FinishType>athan.</FinishType>
       </Container>
-    </>
+    </div>
   );
 };

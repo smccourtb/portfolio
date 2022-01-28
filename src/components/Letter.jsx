@@ -1,5 +1,6 @@
 import styled, { keyframes, css } from "styled-components/macro";
-import { useState } from "react";
+import { createRef, useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 
 const squash = keyframes`
   10% {
@@ -17,8 +18,7 @@ const squash = keyframes`
 `;
 
 const GreetingLetter = styled.span`
-  font-family: inherit;
-
+  font-family: "Paytone One", serif;
   display: inline-block;
   color: ${({ playIntro, theme: { colors } }) => playIntro && colors.mainBrand};
   animation: ${({ playIntro }) =>
@@ -34,7 +34,7 @@ export const Letter = ({ letter }) => {
   return (
     <GreetingLetter
       playIntro={hovered}
-      onMouseEnter={() => setHovered(true)}
+      onMouseEnter={(e) => setHovered(true)}
       onAnimationEnd={(e) => setHovered(false)}
     >
       {letter}
