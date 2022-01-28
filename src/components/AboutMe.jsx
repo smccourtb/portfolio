@@ -1,6 +1,6 @@
 import { Container, Header } from "../styles/shared-styles";
 import ProfilePic from "../assets/images/profile.jpg";
-import styled from "styled-components/macro";
+import styled, { keyframes } from "styled-components/macro";
 import Javascript from "../assets/icons/logo-javascript.svg";
 import HTML5 from "../assets/icons/html-1.svg";
 import CSS from "../assets/icons/css-3.svg";
@@ -24,6 +24,39 @@ const ProfilePicture = styled.img`
   float: right;
 `;
 
+const Open = keyframes`
+  100% {
+    overflow: visible;
+    opacity: 100%;
+    width: 50.5%;
+  }
+`;
+const OpenOne = keyframes`
+  100% {
+    height: 100%;
+    margin: 0;
+
+
+  }
+`;
+
+const Paragraph = styled.p`
+  text-align: ${({ first }) => (!first ? "left" : "right")};
+  border-right: ${({ first }) => first && `3px solid white`};
+  border-left: ${({ first }) => !first && `3px solid white`};
+  padding: 0 0.5em;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  //margin: 0 49.5%;
+  font-size: 0.9em;
+  margin: auto;
+
+  align-self: ${({ first }) => (first ? "flex-start" : "flex-end")};
+  animation: ${OpenOne} 0.5s both, ${Open} 1s 3s both;
+`;
+
 const Logo = styled.img`
   transform-box: fill-box;
   transform-origin: 15% 80%;
@@ -41,6 +74,8 @@ const LogoContainer = styled.div`
   gap: 1em;
   flex-wrap: wrap;
   justify-content: center;
+  height: 150px;
+  width: 80%;
 `;
 
 const Subheader = styled.h3`
@@ -51,106 +86,51 @@ const Subheader = styled.h3`
 `;
 export const AboutMe = () => {
   return (
-    <Container column center fullPage space>
-      <header
+    <div className={"icon"}>
+      {/*<Header>About</Header>*/}
+
+      <div
         style={{
-          width: "27px",
-          height: "70px",
-          backgroundColor: "#EFC269",
+          height: "90%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+          padding: "0 .5em",
         }}
       >
-        <Header>About</Header>
-      </header>
-      <div>
-        <ProfilePicture src={ProfilePic} alt="Me! Shawn McCourt" />
-        <p
-          style={{
-            color: "#33404e",
-            fontWeight: "500",
-            fontFamily: "Raleway",
-            fontSize: "1em",
-          }}
-        >
-          Hi, I'm Shawn! I love to create things. I find that front-end
-          development is filled with unique and exciting challenges, and there
-          is always something to learn. I can adapt quickly and believe you can
-          do anything you put your mind to. I use best practices with modern
-          methods to create responsive and semantic web applications. In my free
-          time I like to play the guitar, hike around in the woods of Maine, and
-          play board games.
-        </p>
-      </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: ".5em" }}>
         <div
-          style={{
-            height: ".5em",
-            backgroundColor: "#EFC269",
-            display: "flex",
-            alignItems: "flex-end",
-          }}
+          style={{ display: "flex", flexDirection: "column", height: "60vh" }}
         >
-          <p style={{ fontStyle: "italic", fontWeight: "bold" }}>
-            I'm looking to join a team of like-minded
-          </p>
+          <Paragraph first>
+            Hi, I'm Shawn! I started down this path seeing all these amazing
+            websites and getting{" "}
+            <span style={{ textDecoration: "line-through" }}>jealous</span>{" "}
+            curious about how they were made. The world is challenging,
+            exciting, frustrating and everything rolled into one. Every day is
+            an opportunity to learn something new, and I love bringing new ideas
+            to life.
+          </Paragraph>
+          <Paragraph>
+            When i'm not working, you can find me trying to keep up with my 3
+            boys, playing board games with friends, jamming out on my
+            acoustic-campfire style, or belly-laughing with my{" "}
+            <span style={{ textDecoration: "line-through" }}>best friend</span>{" "}
+            wife. Life is busy but short, and I try to spend everyday improving
+            myself.
+          </Paragraph>
         </div>
         <div
           style={{
-            height: ".5em",
-            backgroundColor: "#EFC269",
-            display: "flex",
-            alignItems: "flex-end",
+            fontStyle: "italic",
+            fontWeight: "bold",
           }}
         >
-          <span
-            style={{
-              fontStyle: "italic",
-              fontWeight: "bold",
-            }}
-          >
-            people to learn and grow with.
+          <span>
+            I'm looking to join a team of like-minded people to learn and grow
+            with.
           </span>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          textAlign: "center",
-          fontSize: "1em",
-          gap: "1em",
-        }}
-      >
-        <div
-          style={{
-            alignSelf: "flex-start",
-            textAlign: "left",
-          }}
-        >
-          <Subheader>Tools and Technologies</Subheader>
-          <p style={{ whiteSpace: "pre-wrap", fontSize: ".55em" }}>
-            {
-              "Here are some of the languages, tools, frameworks i've used in development"
-            }
-          </p>
-        </div>
-        <LogoContainer>
-          <Logo alt="Javascript" src={Javascript} />
-          <Logo alt="HTML 5" src={HTML5} />
-          <Logo alt="CSS 3" src={CSS} />
-          <Logo alt="React" src={ReactIcon} />
-          <Logo alt="Styled Components" src={StyledComponents} />
-          <Logo alt="Webpack" src={Webpack} />
-          <Logo alt="GDScript" src={Godot} />
-          <Logo alt="Webstorm" src={Webstorm} />
-          <Logo alt="VSCode" src={VSCode} />
-          <Logo alt="Git" src={Git} />
-          <Logo alt="Github" src={Github} />
-          <Logo alt="Firebase" src={Firebase} />
-          <Logo alt="npm" src={NPM} />
-          <Logo alt="Ubuntu" src={Ubuntu} />
-        </LogoContainer>
-      </div>
-    </Container>
+    </div>
   );
 };
