@@ -6,6 +6,7 @@ import Audiophile from "./assets/images/audiophile.png";
 
 const projectData = [
   {
+    id: 0,
     name: "Memory",
     description:
       "Play a round of the classic game Memory. With a timed solo mode,\n" +
@@ -23,6 +24,7 @@ const projectData = [
     },
   },
   {
+    id: 1,
     name: "Todo List",
     description:
       "Jot down your thoughts. Rearrange your tasks by dragging the task to the order you'd like. Filter through what you've completed, and what you still need to do.",
@@ -38,6 +40,7 @@ const projectData = [
     },
   },
   {
+    id: 2,
     name: "Rock Paper Scissors",
     description:
       "Play a round of rock, paper, scissors! Play against the computer with the classic version, or the new take, rock, paper, scissors, lizard, spock!",
@@ -53,6 +56,7 @@ const projectData = [
     },
   },
   {
+    id: 3,
     name: "Weather",
     description:
       "Weather app with a hourly and daily forecast. Uses OpenWeatherAPI",
@@ -68,6 +72,7 @@ const projectData = [
     },
   },
   {
+    id: 4,
     name: "Audiophile",
     description:
       "Mock website where you can browse and 'purchase' audio related products. Has a working shopping cart and form validation",
@@ -83,6 +88,7 @@ const projectData = [
     },
   },
   {
+    id: 5,
     name: "Bones",
     description: "A small dice battle game with rpg elements.",
     image: Audiophile,
