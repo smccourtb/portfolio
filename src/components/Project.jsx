@@ -22,8 +22,7 @@ const drift = keyframes`
 const ProjectContainer = styled.div`
   width: 100%;
   max-width: 28em;
-  height: 100%;
-  border-radius: 20px;
+  //height: 100%;
   //position: relative;
   -webkit-transition: 1.5s ease-in-out;
   transition: 1.5s ease-in-out;
@@ -48,7 +47,7 @@ const Front = styled.div`
   text-align: center;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  border-radius: 1em;
+  border-radius: 2px;
 `;
 
 const Back = styled.div`
@@ -57,7 +56,8 @@ const Back = styled.div`
   position: absolute;
   width: 80%;
   padding: 1em 1.5em;
-  box-shadow: black 0 1em 2.5em -1em;
+  box-shadow: black 0.5em 0.5em 0 0;
+  border: 2px solid black;
 
   background-color: ${({ theme: { colors } }) => colors.lightShade};
   color: ${({ theme: { colors } }) => colors.darkShade};
@@ -65,7 +65,6 @@ const Back = styled.div`
   text-align: center;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  border-radius: 1em;
   top: -3.35em;
 `;
 
@@ -84,7 +83,6 @@ const ProjectScreenShot = styled.img`
 
   background-size: 110%;
   background-position: top center;
-  box-shadow: black 0 2em 4em -2em;
 
   //animation: ${drift} 35s alternate infinite;
   //animation-timing-function: ease-in-out;
@@ -201,8 +199,8 @@ export const Project = ({ projectData }) => {
       <LowerBack>
         Take a closer look
         <LowerContent>
-          {Object.keys(links).map((link) => (
-            <Button as={"a"} href={links[link]}>
+          {Object.keys(links).map((link, idx) => (
+            <Button key={idx * 12} as={"a"} href={links[link]}>
               {link}
             </Button>
           ))}
