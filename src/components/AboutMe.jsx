@@ -1,136 +1,194 @@
-import { Container, Header } from "../styles/shared-styles";
 import ProfilePic from "../assets/images/profile.jpg";
-import styled, { keyframes } from "styled-components/macro";
-import Javascript from "../assets/icons/logo-javascript.svg";
-import HTML5 from "../assets/icons/html-1.svg";
-import CSS from "../assets/icons/css-3.svg";
-import Webpack from "../assets/icons/webpack-icon.svg";
-import Webstorm from "../assets/icons/webstorm-icon.svg";
-import ReactIcon from "../assets/icons/react-2.svg";
-import StyledComponents from "../assets/icons/styled-components-1.svg";
-import Git from "../assets/icons/git-icon.svg";
-import Github from "../assets/icons/github-icon.svg";
-import Firebase from "../assets/icons/firebase-1.svg";
-import VSCode from "../assets/icons/visual-studio-code-1.svg";
-import NPM from "../assets/icons/npm.svg";
-import Godot from "../assets/icons/godot-logo.svg";
-import Ubuntu from "../assets/icons/ubuntu-4.svg";
+import styled from "styled-components/macro";
+import { SiCss3, SiHtml5, SiJavascript, SiReact } from "react-icons/si";
+import Slide from "./Slide";
+import { Header } from "../styles/shared-styles";
+import { css, keyframes } from "styled-components";
+import { placeholderRegex } from "babel-plugin-styled-components/lib/css/placeholderUtils";
+import { useLayoutEffect, useState } from "react";
 
-const ProfilePicture = styled.img`
-  border-radius: 50%;
-  height: 8em;
-  width: 8em;
-  align-self: flex-end;
-  float: right;
-`;
-
-const Open = keyframes`
-  100% {
-    overflow: visible;
+const FloatUp = keyframes`
+  0% {
+    transform: translateY(500%);
+  }
+  50% {
     opacity: 100%;
-    width: 50.5%;
   }
-`;
-const OpenOne = keyframes`
   100% {
-    height: 100%;
-    margin: 0;
-
-
+    transform: translateY(-200%);
   }
 `;
 
-const Paragraph = styled.p`
-  text-align: ${({ first }) => (!first ? "left" : "right")};
-  border-right: ${({ first }) => first && `3px solid white`};
-  border-left: ${({ first }) => !first && `3px solid white`};
-  padding: 0 0.5em;
-  width: 0;
-  height: 0;
+const AnimContainer = styled.div`
+  animation: ${({ delay, speed }) =>
+    css`
+      ${FloatUp} ${speed}s ${delay}s infinite linear
+    `};
+  position: relative;
   opacity: 0;
-  overflow: hidden;
-  //margin: 0 49.5%;
-  font-size: 0.9em;
-  margin: auto;
-
-  align-self: ${({ first }) => (first ? "flex-start" : "flex-end")};
-  animation: ${OpenOne} 0.5s both, ${Open} 1s 3s both;
-`;
-
-const Logo = styled.img`
-  transform-box: fill-box;
-  transform-origin: 15% 80%;
-  height: 2em;
-  width: 2em;
+  z-index: 2;
+  left: ${({ position }) => `${position}em`};
 
   :hover {
-    //transform: translate(150px, 40px);
-    filter: none;
+    animation-play-state: paused;
   }
 `;
-
-const LogoContainer = styled.div`
-  display: flex;
-  gap: 1em;
-  flex-wrap: wrap;
-  justify-content: center;
-  height: 150px;
-  width: 80%;
+const Paragraph = styled.p`
+  text-align: ${({ first }) => (!first ? "left" : "right")};
+  font-size: 0.9em;
+  align-self: center;
+  //height: 0;
 `;
 
-const Subheader = styled.h3`
-  font-family: "Roboto Slab", serif;
-  font-weight: 700;
-  align-self: flex-start;
-  border-bottom: 1px solid;
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: 20% 1em;
+  height: 80vh;
+  max-width: 700px;
+`;
+
+const UpperRight = styled.div`
+  position: absolute;
+  top: 0;
+  left: 55%;
+  width: 45%;
+  height: 100%;
+`;
+
+const Strikethrough = styled.span`
+  text-decoration: line-through;
+`;
+
+const Snippet = styled.span`
+  font-style: italic;
+  font-weight: bold;
+`;
+
+const Row = styled.div`
+  display: flex;
+  height: 100%;
+`;
+
+const TextBorder = styled.div`
+  width: 100%;
+  ${({ right }) => right && `border-left: .3em solid white`};
+  ${({ left }) => left && `border-right: .3em solid white`};
+  margin: ${({ left }) => (left ? `0 0.33em 0 0.5em` : `0 0.5em 0 0.4em`)};
+`;
+
+const Tooltip = styled.div`
+  //display: inline;
+  position: relative;
+
+  :hover:after {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    background: #444;
+    border-radius: 8px;
+    color: #fff;
+    content: attr(title);
+    margin: -82px auto 0;
+    font-size: 16px;
+    padding: 13px;
+    width: 220px;
+  }
+
+  :hover:before {
+    border: solid;
+    border-color: #444 transparent;
+    border-width: 12px 6px 0 6px;
+    content: "";
+    left: 45%;
+    bottom: 30px;
+    position: absolute;
+  }
 `;
 export const AboutMe = () => {
+  const [active, setActive] = useState(false);
+  const ranNum = (min, max) => {
+    return Math.random() * (max - min) + min;
+  };
   return (
-    <div className={"icon"}>
-      {/*<Header>About</Header>*/}
+    <div className={"icon"} onTransitionEnd={() => setActive((prev) => !prev)}>
+      <Header>About</Header>
 
-      <div
-        style={{
-          height: "90%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-evenly",
-          padding: "0 .5em",
-        }}
-      >
-        <div
-          style={{ display: "flex", flexDirection: "column", height: "60vh" }}
-        >
-          <Paragraph first>
-            Hi, I'm Shawn! I started down this path seeing all these amazing
-            websites and getting{" "}
-            <span style={{ textDecoration: "line-through" }}>jealous</span>{" "}
-            curious about how they were made. The world is challenging,
-            exciting, frustrating and everything rolled into one. Every day is
-            an opportunity to learn something new, and I love bringing new ideas
-            to life.
-          </Paragraph>
-          <Paragraph>
-            When i'm not working, you can find me trying to keep up with my 3
-            boys, playing board games with friends, jamming out on my
-            acoustic-campfire style, or belly-laughing with my{" "}
-            <span style={{ textDecoration: "line-through" }}>best friend</span>{" "}
-            wife. Life is busy but short, and I try to spend everyday improving
-            myself.
-          </Paragraph>
-        </div>
-        <div
-          style={{
-            fontStyle: "italic",
-            fontWeight: "bold",
-          }}
-        >
-          <span>
-            I'm looking to join a team of like-minded people to learn and grow
-            with.
-          </span>
-        </div>
-      </div>
+      {active ? (
+        <Content>
+          <Slide direction={"up"} delay={0.5}>
+            <Row>
+              <Slide direction={"left"} delay={1.2}>
+                <Paragraph first>
+                  Hi, I'm Shawn! I started down this path seeing all these
+                  amazing websites and getting{" "}
+                  <Strikethrough>jealous</Strikethrough> curious about how they
+                  were made. The world is challenging, exciting, frustrating and
+                  everything rolled into one. Every day is an opportunity to
+                  learn something new, and I love bringing new ideas to life.
+                </Paragraph>
+              </Slide>
+              <TextBorder right />
+              <UpperRight>
+                <AnimContainer
+                  position={ranNum(-5, 5)}
+                  delay={ranNum(5, 7)}
+                  speed={ranNum(9, 12)}
+                >
+                  <Tooltip title="Javascript">
+                    <SiJavascript size={"3em"} />
+                  </Tooltip>
+                </AnimContainer>
+                <AnimContainer
+                  position={ranNum(-5, 5)}
+                  delay={ranNum(5, 7)}
+                  speed={ranNum(9, 12)}
+                >
+                  <SiReact size={"2em"} />
+                </AnimContainer>
+                <AnimContainer
+                  position={ranNum(-5, 5)}
+                  delay={ranNum(5, 7)}
+                  speed={ranNum(9, 12)}
+                >
+                  <SiHtml5 size={"1em"} />
+                </AnimContainer>
+                <AnimContainer
+                  position={ranNum(-5, 5)}
+                  delay={ranNum(5, 7)}
+                  speed={ranNum(9, 12)}
+                >
+                  <SiCss3 size={"1em"} />
+                </AnimContainer>
+              </UpperRight>
+            </Row>
+          </Slide>
+          <Slide direction={"down"} delay={0.5}>
+            {" "}
+            <Row>
+              <TextBorder left />
+
+              <Slide direction={"right"} delay={1.2}>
+                <Paragraph>
+                  When i'm not working, you can find me trying to keep up with
+                  my 3 boys, playing board games with friends, jamming out on my
+                  acoustic-campfire style, or belly-laughing with my{" "}
+                  <Strikethrough>best friend</Strikethrough> wife. Life is busy
+                  but short, and I try to spend everyday improving myself.
+                </Paragraph>
+              </Slide>
+            </Row>
+          </Slide>
+        </Content>
+      ) : (
+        <Content />
+      )}
+
+      <Snippet>
+        I'm looking to join a team of like-minded people to learn and grow with.
+      </Snippet>
     </div>
   );
 };

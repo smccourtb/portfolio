@@ -3,7 +3,11 @@ import styled from "styled-components/macro";
 export const Header = styled.h2`
   font-family: "Roboto Slab", serif;
   font-weight: 700;
-  font-size: 1.5em;
+  font-size: 10em;
+  opacity: 15%;
+  top: -4%;
+  right: 0;
+  position: absolute;
 `;
 
 export const Container = styled.section`
