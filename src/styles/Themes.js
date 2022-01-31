@@ -9,6 +9,13 @@ const theme = {
     darkAccent: "#D88958",
     darkShade: "#343540",
   },
+  cardColors: {
+    green: [],
+    yellow: [],
+    orange: [],
+    blue: [],
+    red: [],
+  },
   fonts: ["sans-serif", "Roboto"],
   fontSizes: {
     small: "1em",

@@ -20,157 +20,162 @@ const drift = keyframes`
 `;
 
 const ProjectContainer = styled.div`
-  width: 100%;
-  max-width: 28em;
-  //height: 100%;
-  //position: relative;
-  -webkit-transition: 1.5s ease-in-out;
-  transition: 1.5s ease-in-out;
+  width: 20em;
+  height: 20em;
+  position: relative;
+  -webkit-transition: 0.7s ease-in-out;
+  transition: 0.7s ease-in-out;
   transform-style: preserve-3d;
-  margin-top: 5em;
   font-size: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 
   :hover {
-    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
   }
 `;
+
 const Front = styled.div`
   z-index: 2;
   width: 100%;
-
-  background-color: ${({ theme: { colors } }) => colors.lightShade};
-  color: ${({ theme: { colors } }) => colors.darkShade};
-  text-align: center;
+  height: 100%;
+  position: relative;
   transform-style: preserve-3d;
   backface-visibility: hidden;
   border-radius: 2px;
+  background: linear-gradient(to right bottom, #7ed56f, #28b485);
+  box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+
+  :before {
+    content: "";
+    position: absolute;
+    border: 2px solid white;
+    border-radius: 2px;
+    width: 90%;
+    height: 90%;
+  }
 `;
 
 const Back = styled.div`
   z-index: 0;
-  height: 16.5em;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  width: 80%;
-  padding: 1em 1.5em;
-  box-shadow: black 0.5em 0.5em 0 0;
-  border: 2px solid black;
-
+  box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
   background-color: ${({ theme: { colors } }) => colors.lightShade};
-  color: ${({ theme: { colors } }) => colors.darkShade};
   transform: rotateY(180deg);
-  text-align: center;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  top: -3.35em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  background: ${({ image }) => `url(${image}) no-repeat 50% 100%`};
+  background-size: cover;
+
+  :before {
+    content: "";
+    position: absolute;
+    border: 2px solid #28b485;
+    border-radius: 2px;
+    width: 90%;
+    height: 90%;
+  }
 `;
 
 const LowerBack = styled(Back)`
-  top: 15em;
+  top: 10em;
   height: 8em;
+  width: 75%;
 `;
 
 const ProjectScreenShot = styled.img`
-  height: 20em;
-  width: 100%;
-  border-radius: 1.2em;
-  top: -7em;
+  height: 5em;
+  width: 5em;
+  border-radius: 3px;
+  //top: -7em;
   position: absolute;
-  background-image: url(${({ image }) => image});
+  bottom: 10%;
+  right: 10%;
 
-  background-size: 110%;
-  background-position: top center;
-
-  //animation: ${drift} 35s alternate infinite;
+  // animation: ${drift} 35s alternate infinite;
   //animation-timing-function: ease-in-out;
 `;
 
 const Content = styled.div`
   transform: translatez(5em) scale(0.8);
-  line-height: 1.5em;
+  line-height: 2.5em;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
 
-  :before {
-    content: "";
-    position: absolute;
-    bottom: -2em;
-    height: 3px;
-    background-color: ${({ theme: { colors } }) => colors.mainBrand};
-    width: 70px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-`;
-
-const UpperContent = styled(Content)`
-  gap: 1em;
-  justify-content: space-evenly;
-  padding-bottom: 3em;
-
-  :before {
-    bottom: 0;
-  }
+  // little red dash on the bottom of each content card
+  // :before {
+  //   content: "";
+  //   position: absolute;
+  //   bottom: -2em;
+  //   height: 3px;
+  //   background-color: ${({ theme: { colors } }) => colors.mainBrand};
+  //   width: 70px;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  // }
 `;
 
 const LowerContent = styled(Content)`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-
-  :before {
-    bottom: 0.2em;
-  }
-`;
-
-const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 16em;
-  text-align: left;
-  gap: 1em;
+  background-color: white;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  line-height: unset;
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 2em;
-  color: ${({ primary, theme: { colors } }) =>
-    primary ? colors.mainBrand : colors.darkShade};
-  font-family: "Roboto Slab", serif;
-`;
-
-const ToolsTitle = styled.h4`
-  font-size: 1.4em;
-  color: ${({ primary, theme: { colors } }) =>
-    primary ? colors.mainBrand : colors.darkShade};
-  font-family: "Roboto Slab", serif;
+  font-size: 2.5em;
+  text-transform: uppercase;
+  color: whitesmoke;
+  font-family: "Paytone One", serif;
+  align-self: flex-start;
+  margin-top: auto;
 `;
 
 const ProjectDescription = styled.p`
   font-family: "Raleway", serif;
-  font-size: 1em;
+  text-align: left;
+  margin: 1em;
+  color: black;
+  background-color: white;
 `;
 
 const Button = styled.button`
-  border-radius: 0.3em;
-  background-color: transparent;
-  border: 2px solid ${({ theme: { colors } }) => colors.lightAccent};
-  color: ${({ theme: { colors } }) => colors.lightAccent};
-  padding: 0.3em 1em;
+  background-color: white;
+  border: 2px solid #28b485;
+  border-radius: 2px;
+  color: #28b485;
   outline: none;
-  font-size: 1.1em;
   text-decoration: none;
   transition: all 0.3s ease-out;
+  padding: 0.15em 1em;
+  font-size: 1.2em;
+  font-weight: bold;
+  box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.3);
 
   :hover {
-    color: ${({ theme: { colors } }) => colors.mainBrand};
-    border: 2px solid ${({ theme: { colors } }) => colors.mainBrand};
+    color: white;
+    border: 2px solid white;
+    background-color: #28b485;
     transform: scale(110%);
   }
 `;
@@ -180,32 +185,21 @@ export const Project = ({ projectData }) => {
 
   return (
     <ProjectContainer>
-      <Front>
+      <Front image={image}>
         <Content>
-          <ProjectScreenShot image={image} />
-          <TextContainer>
-            <ProjectTitle primary>{name}</ProjectTitle>
-            <ProjectDescription>{description}</ProjectDescription>
-          </TextContainer>
+          <ProjectTitle>{name}</ProjectTitle>
         </Content>
       </Front>
 
-      <Back>
-        <ToolsTitle>Built With</ToolsTitle>
-        <UpperContent>
-          <Tools data={tools} />
-        </UpperContent>
-      </Back>
-      <LowerBack>
-        Take a closer look
-        <LowerContent>
+      <Back image={image}>
+        <Content>
           {Object.keys(links).map((link, idx) => (
             <Button key={idx * 12} as={"a"} href={links[link]}>
               {link}
             </Button>
           ))}
-        </LowerContent>
-      </LowerBack>
+        </Content>
+      </Back>
     </ProjectContainer>
   );
 };
