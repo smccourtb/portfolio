@@ -6,18 +6,25 @@ import { useState } from "react";
 import { SiReact } from "react-icons/si";
 
 const ProjectContainer = styled.div`
-  //display: flex;
-  //flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
   max-height: 80vh;
   font-size: 12px;
-  //gap: 2em;
+  gap: 0.5em;
   padding: 2em;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  //display: grid;
+  //grid-template: repeat(2, 1fr) / 1fr 1fr;
+  max-width: 80vw;
 `;
 
+const Test = styled.div`
+  width: ${({ wide }) => (wide ? "50%" : "100%")};
+  min-height: 5em;
+`;
 export const Projects = ({ data }) => {
   const [projectData, setProjectData] = useState(data);
+  const [settings, setSettings] = useState({ filter: [], sort: "ascending" });
   const Filter = () => {
     let newData = [...projectData];
     const filtered = newData.filter((data) =>
@@ -25,24 +32,39 @@ export const Projects = ({ data }) => {
     );
     setProjectData(filtered);
   };
-  const projects = projectData.map((project) => (
-    <Flipped flipId={project.id} key={project.id}>
-      <div>
-        <Project projectData={project} key={project.id} />
-      </div>
-    </Flipped>
-  ));
+  const projects = projectData.map((project) => {
+    return (
+      <Flipped flipId={project.id} key={project.id}>
+        <Test>
+          <Project projectData={project} key={project.id} />
+        </Test>
+      </Flipped>
+    );
+  });
   return (
     <div className={"icon"}>
       <Header>Projects</Header>
-
       <div style={{ display: "flex", alignSelf: "center", zIndex: "1" }}>
-        <button
-          onClick={Filter}
-          style={{ color: "black", background: "none", border: "none" }}
+        <label
+          htmlFor=""
+          style={{
+            color: "black",
+            background: "none",
+            border: "none",
+          }}
         >
+          <input
+            onChange={Filter("React")}
+            type={"checkbox"}
+            value={"React"}
+            style={{
+              appearance: "none",
+            }}
+          />
           <SiReact />
-        </button>
+          React
+        </label>
+
         <button onClick={() => setProjectData(data)}>All</button>
         <button
           onClick={() => {
@@ -54,6 +76,8 @@ export const Projects = ({ data }) => {
         >
           Shuffle
         </button>
+
+        {/*SORTING*/}
         <button
           onClick={() => {
             const sorted = projectData.sort((a, b) => a.release - b.release);
