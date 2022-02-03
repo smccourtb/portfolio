@@ -10,10 +10,10 @@ const theme = {
     darkShade: "#343540",
   },
   cardColors: {
-    green: [],
+    green: { primary: "#28b485", secondary: "#7ed56f" },
     yellow: [],
-    orange: [],
-    blue: [],
+    orange: { primary: "#2998FF", secondary: "#5643FA" },
+    blue: { primary: "#FFB900", secondary: "#FF7730" },
     red: [],
   },
   fonts: ["sans-serif", "Roboto"],
