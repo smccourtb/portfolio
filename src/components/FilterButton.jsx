@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components/macro";
-import { SiReact } from "react-icons/si";
+import styled from "styled-components";
 import { DevelopmentIcon } from "./DevelopmentIcon";
 
 const Button = styled.button`

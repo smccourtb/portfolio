@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from "styled-components/macro";
+import styled from "styled-components/macro";
 import {
   SiReact,
   SiCss3,
@@ -7,13 +7,6 @@ import {
   SiJavascript,
   SiGodotengine,
 } from "react-icons/si";
-
-// animation for developer logo on mouse enter
-const me = keyframes`
-  50% {
-    transform: scale(120%);
-  }
-`;
 
 const DevLogo = styled.div`
   cursor: pointer;

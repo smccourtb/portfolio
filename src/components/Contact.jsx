@@ -1,11 +1,10 @@
-import { Container, Header } from "../styles/shared-styles";
+import { Header } from "../styles/shared-styles";
 import styled from "styled-components";
 import ContactForm from "./ContactForm";
 import LinkedInIcon from "../assets/icons/linkedin.svg";
 import GithubIcon from "../assets/icons/github-icon.svg";
 import CodePenIcon from "../assets/icons/codepen.svg";
 import FrontEndMentorIcon from "../assets/icons/frontendmentor.svg";
-import Arrow from "./Arrow";
 
 const Footer = styled.div`
   font-size: 0.5em;

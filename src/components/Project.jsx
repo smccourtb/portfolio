@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components/macro";
+import styled from "styled-components/macro";
 import { theme } from "../styles/Themes";
 import { css } from "styled-components";
 import { useState } from "react";
@@ -118,7 +118,7 @@ const pickColor = (obj) => {
 };
 
 export const Project = ({ projectData }) => {
-  const [color, setColor] = useState(pickColor(theme.cardColors));
+  const [color] = useState(pickColor(theme.cardColors));
   const { name, image, links } = { ...projectData };
   return (
     <ProjectContainer>

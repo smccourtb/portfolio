@@ -6,7 +6,6 @@ import { Projects } from "./components/Projects";
 import { Contact } from "./components/Contact";
 import projectsData from "./ProjectsData";
 import "./styles/test.css";
-import { useState } from "react";
 
 function App() {
   return (

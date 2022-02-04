@@ -1,6 +1,5 @@
 import styled, { keyframes, css } from "styled-components/macro";
-import { createRef, useEffect, useState } from "react";
-import ReactDOM from "react-dom";
+import { useState } from "react";
 
 const squash = keyframes`
   10% {
