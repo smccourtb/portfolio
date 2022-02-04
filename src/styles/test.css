@@ -31,12 +31,12 @@ html, body, .page {
 }
 
 #p3 {
-    background: gold;
+    background: rebeccapurple;
     overflow: scroll;
 }
 
 #p4 {
-    background: deeppink;
+    background: gold;
 }
 
 #t2:target #p2,
