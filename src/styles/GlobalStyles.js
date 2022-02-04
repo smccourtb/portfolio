@@ -10,18 +10,21 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html, body {
-    font-size: 15px;
-    //@media (min-width: 600px) {
-    //  font-size: 24px;
-    //}
-    //@media (min-width: 960px) {
-    //  font-size: 30px;
-    //}
-    //@media (min-width: 1280px) {
-    //  font-size: 36px;
-    //}
-    //@media (min-width: 1920px) {
-    //  font-size: 42px;
-    //}
+    font-size: 13px;
+    @media (min-width: 375px) {
+      font-size: 15px;
+    }
+    @media (min-width: 576px) {
+      font-size: 17px;
+    }
+    @media (min-width: 992px) {
+      font-size: 19px;
+    }
+    @media (min-width: 1200px) {
+      font-size: 21px;
+    }
+    @media (min-width: 1400px) {
+      font-size: 25px;
+    }
 
   }`;

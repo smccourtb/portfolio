@@ -79,9 +79,12 @@ const HandWritingContainer = styled.div`
   flex-direction: column;
   line-height: 1.25em;
   width: 100%;
-  position: absolute;
-  left: 0;
-  top: 40%;
+  max-width: 500px;
+  position: relative;
+  //left: 0;
+  //right: 0;
+  align-self: center;
+  top: -20%;
   padding: 0.5em;
   animation: ${FadeOut} 1s 12s forwards cubic-bezier(0.26, -0.95, 1, -0.54);
 `;
@@ -89,7 +92,7 @@ const HandWritingContainer = styled.div`
 export const Greeting = () => {
   const [state, setState] = useState(false);
   const [movement, setMovement] = useState([]);
-  const introLetters = (text, delayTime) =>
+  const introLetters = (text) =>
     text.split("").map((letter, idx) => <Letter key={idx} letter={letter} />);
 
   return (
@@ -103,10 +106,10 @@ export const Greeting = () => {
       <DrawnPronunciation
         style={{
           position: "absolute",
-          top: "0",
+          top: "30%",
           left: "0",
           right: "0",
-          bottom: "93%",
+          // bottom: "93%",
           opacity: "0%",
           fontSize: ".1em",
         }}

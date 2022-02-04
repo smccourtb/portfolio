@@ -9,7 +9,6 @@ const Button = styled.button`
   text-align: center;
   cursor: pointer;
   font-size: 0.5em;
-  //transform: ${({ active }) => active && `scale(1.2)`};
   transition: all 0.3s ease;
   background: ${({ active }) => (active ? "white" : `transparent`)} none;
   color: ${({ active }) => (active ? "black" : `white`)} none;

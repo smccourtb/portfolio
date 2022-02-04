@@ -9,8 +9,8 @@ import Arrow from "./Arrow";
 
 const Footer = styled.div`
   font-size: 0.5em;
-  min-height: 104px;
   width: 100%;
+  height: 12em;
   position: relative;
   overflow: hidden;
 
@@ -22,7 +22,7 @@ const Footer = styled.div`
     width: 19.5em;
     height: 6em;
     border-radius: 1.5em;
-    box-shadow: 10em 10em 0 200em #64e0dc;
+    box-shadow: 10em 10em 0 200em tomato;
   }
 
   :after {
@@ -40,11 +40,13 @@ const Footer = styled.div`
 
 const Logo = styled.img`
   height: 100%;
+  padding: 0 0.5em;
 `;
 
 export const Contact = () => {
   return (
-    <div className={"icon"}>
+    <div className={"icon"} style={{ color: "black" }}>
+      <Header style={{ color: "white" }}>Contact</Header>
       <div
         style={{
           height: "75%",
@@ -62,28 +64,28 @@ export const Contact = () => {
           </p>
         </div>
         <ContactForm />
-
-        <Arrow
-          firstColor="rgb(52, 53, 64)"
-          secondColor="white"
-          fillPercentage={"59.4%"}
-        />
       </div>
       <p
         style={{
           fontSize: ".8em",
           padding: "0 40% 1em 1em",
           fontWeight: "700",
+          textAlign: "left",
         }}
       >
         Or check out what i've been up to.
       </p>
+      {/*<Arrow*/}
+      {/*  firstColor="rgb(52, 53, 64)"*/}
+      {/*  secondColor="white"*/}
+      {/*  fillPercentage={"59.4%"}*/}
+      {/*/>*/}
       <Footer>
         <div
           style={{
             height: "2.5em",
-            display: "flex",
-            gap: "1em",
+            // display: "flex",
+            gap: ".5em",
             width: "15em",
             marginTop: ".5em",
             marginLeft: "1em",

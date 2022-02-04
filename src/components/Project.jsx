@@ -10,7 +10,7 @@ const ProjectContainer = styled.div`
   -webkit-transition: 0.7s ease-in-out;
   transition: 0.7s ease-in-out;
   transform-style: preserve-3d;
-  font-size: 1em;
+  font-size: 1rem;
   display: flex;
 
   :hover {
@@ -95,7 +95,7 @@ const Button = styled.button`
 
   border-radius: 2px;
   color: ${({ color }) => color && `${color.primary}`};
-
+  font-size: 1em;
   outline: none;
   padding: 0.25em 0.5em;
   text-decoration: none;

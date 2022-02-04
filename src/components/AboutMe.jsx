@@ -1,11 +1,8 @@
-import ProfilePic from "../assets/images/profile.jpg";
-import styled from "styled-components/macro";
 import { SiCss3, SiHtml5, SiJavascript, SiReact } from "react-icons/si";
 import Slide from "./Slide";
 import { Header } from "../styles/shared-styles";
-import { css, keyframes } from "styled-components";
-import { placeholderRegex } from "babel-plugin-styled-components/lib/css/placeholderUtils";
-import { useLayoutEffect, useState } from "react";
+import styled, { css, keyframes } from "styled-components";
+import { useState } from "react";
 
 const FloatUp = keyframes`
   0% {
@@ -44,9 +41,9 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
-  padding: 20% 1em;
-  height: 80vh;
+  padding: 2em 1em;
   max-width: 700px;
+  height: 70vh;
 `;
 
 const UpperRight = styled.div`
@@ -64,6 +61,11 @@ const Strikethrough = styled.span`
 const Snippet = styled.span`
   font-style: italic;
   font-weight: bold;
+  position: absolute;
+  bottom: 10em;
+  left: 0;
+  right: 0;
+  padding: 0 3em;
 `;
 
 const Row = styled.div`
@@ -90,6 +92,7 @@ const Tooltip = styled.div`
     background: #444;
     border-radius: 8px;
     color: #fff;
+    position: absolute;
     content: attr(title);
     margin: -82px auto 0;
     font-size: 16px;

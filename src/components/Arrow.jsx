@@ -4,16 +4,17 @@ const Arrow = ({ firstColor, secondColor, fillPercentage }) => {
       style={{
         position: "absolute",
         zIndex: "1",
-        bottom: "4.75em",
-        right: "0",
+        bottom: "5em",
+        right: "1em",
+        transform: "rotate(-20deg)",
       }}
     >
       <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1200 1200"
-        height="10em"
-        width="10em"
+        height="7em"
+        width="7em"
       >
         <g>
           <defs>

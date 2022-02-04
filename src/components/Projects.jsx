@@ -1,10 +1,10 @@
-import { Container, Header } from "../styles/shared-styles";
+import { Header } from "../styles/shared-styles";
 import { Project } from "./Project";
 import styled from "styled-components/macro";
 import { Flipper, Flipped } from "react-flip-toolkit";
 import { useEffect, useState } from "react";
 import FilterButton from "./FilterButton";
-import { Icon } from "@iconify/react";
+import SortButton from "./SortButton";
 
 const ProjectContainer = styled.div`
   display: flex;
@@ -21,20 +21,6 @@ const ProjectContainer = styled.div`
 const Test = styled.div`
   flex: 1 1 10em;
   //min-height: 5em;
-`;
-
-const Button = styled.button`
-  background: none;
-  border: none;
-  box-sizing: border-box;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: ${({ active }) => (active ? "white" : `transparent`)} none;
-  color: ${({ active }) => (active ? "black" : `white`)} none;
-
-  padding: 0.5em;
-  border-radius: 2.55px 2.5px 0 0;
 `;
 
 export const Projects = ({ data }) => {
@@ -60,7 +46,7 @@ export const Projects = ({ data }) => {
     } else {
       setProjectData(filtered);
     }
-  }, [settings]);
+  }, [data, settings]);
 
   const projects = projectData.map((project) => {
     return (
@@ -77,7 +63,7 @@ export const Projects = ({ data }) => {
       className={"icon"}
       style={{ alignItems: "center", justifyContent: "center", height: "90vh" }}
     >
-      <Header style={{ fontSize: "7em" }}>Projects</Header>
+      <Header>Projects</Header>
       <div
         style={{
           display: "flex",
@@ -112,52 +98,26 @@ export const Projects = ({ data }) => {
         </div>
 
         <div>
-          <Button
-            onClick={() => {
-              const sorted = projectData.sort(() =>
-                Math.random() > 0.5 ? 1 : -1
-              );
-              setProjectData([...sorted]);
-            }}
-          >
-            <Icon
-              icon="mdi:shuffle"
-              style={{
-                width: "2em",
-                height: "2em",
-              }}
-            />
-          </Button>
+          <SortButton
+            data={projectData}
+            setData={setProjectData}
+            method={"shuffle"}
+            iconName={"mdi:shuffle"}
+          />
 
           {/*SORTING*/}
-          <Button
-            onClick={() => {
-              const sorted = projectData.sort((a, b) => a.release - b.release);
-              setProjectData([...sorted]);
-            }}
-          >
-            <Icon
-              icon="mdi:sort-clock-ascending-outline"
-              style={{
-                width: "2em",
-                height: "2em",
-              }}
-            />
-          </Button>
-          <Button
-            onClick={() => {
-              const sorted = projectData.sort((a, b) => b.release - a.release);
-              setProjectData([...sorted]);
-            }}
-          >
-            <Icon
-              icon="mdi:sort-clock-descending-outline"
-              style={{
-                width: "2em",
-                height: "2em",
-              }}
-            />
-          </Button>
+          <SortButton
+            data={projectData}
+            setData={setProjectData}
+            method={"sortAscending"}
+            iconName={"mdi:sort-clock-ascending-outline"}
+          />
+          <SortButton
+            data={projectData}
+            setData={setProjectData}
+            method={"sortDescending"}
+            iconName={"mdi:sort-clock-descending-outline"}
+          />
         </div>
       </div>
 

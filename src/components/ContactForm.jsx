@@ -8,6 +8,7 @@ const StyledInput = styled.input`
   width: 100%;
   padding: 1em 0.5em;
   box-shadow: 0.25em 0.25em 0 0.1em #343540;
+  font-size: 0.75em;
 
   :invalid,
   :focus,
@@ -27,6 +28,7 @@ const StyledTextArea = styled.textarea`
   resize: none;
   height: 10em;
   width: 100%;
+  font-size: 0.75em;
 
   padding: 0.5em;
   box-shadow: 0.25em 0.25em 0 0.1em #343540;
@@ -34,7 +36,6 @@ const StyledTextArea = styled.textarea`
   ::placeholder {
     font-size: 0.75em;
     font-family: "Rock Salt", serif;
-    line-height: 15px;
   }
 
   :invalid,
@@ -48,16 +49,18 @@ const StyledButton = styled.button`
   background-color: transparent;
   width: 50%;
   margin-left: auto;
+  font-size: 0.75em;
 
-  border: 2px solid white;
+  border: 2px solid black;
   overflow: hidden;
   position: relative;
-  color: white;
+  color: black;
   cursor: pointer;
   text-decoration: none;
   text-transform: uppercase;
   padding: 0.5em;
   font-weight: 700;
+  max-width: 150px;
 
   :after {
     background: white;
@@ -116,6 +119,7 @@ const ContactForm = () => {
         flexDirection: "column",
         gap: "1.5em",
         width: "75%",
+        maxWidth: "500px",
       }}
       name="contact"
       method="post"

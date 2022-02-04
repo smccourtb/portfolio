@@ -58,7 +58,7 @@ html, body, .page {
     -webkit-filter: blur(3px);
 }
 
-.icon {
+#menu .icon {
     color: #fff;
     font-size: 1em;
     display: block;
