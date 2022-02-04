@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 
-const theme = {
+export const theme = {
   colors: {
     mainBrand: "#f04d54",
     lightShade: "#F5F6F4",
@@ -11,10 +11,9 @@ const theme = {
   },
   cardColors: {
     green: { primary: "#28b485", secondary: "#7ed56f" },
-    yellow: [],
-    orange: { primary: "#2998FF", secondary: "#5643FA" },
-    blue: { primary: "#FFB900", secondary: "#FF7730" },
-    red: [],
+    blue: { primary: "#2998FF", secondary: "#4368fa" },
+    orange: { primary: "#FFB900", secondary: "#f57d3e" },
+    // black: { primary: "#000", secondary: "#333333" },
   },
   fonts: ["sans-serif", "Roboto"],
   fontSizes: {
