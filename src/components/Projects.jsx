@@ -2,101 +2,173 @@ import { Container, Header } from "../styles/shared-styles";
 import { Project } from "./Project";
 import styled from "styled-components/macro";
 import { Flipper, Flipped } from "react-flip-toolkit";
-import { useState } from "react";
-import { SiReact } from "react-icons/si";
+import { useEffect, useState } from "react";
+import FilterButton from "./FilterButton";
+import { Icon } from "@iconify/react";
 
 const ProjectContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
+  min-width: 100%;
+  max-width: 700px;
+  min-height: 70vh;
   max-height: 80vh;
   font-size: 12px;
   gap: 0.5em;
   padding: 2em;
-  //display: grid;
-  //grid-template: repeat(2, 1fr) / 1fr 1fr;
-  max-width: 80vw;
 `;
 
 const Test = styled.div`
-  width: ${({ wide }) => (wide ? "50%" : "100%")};
-  min-height: 5em;
+  flex: 1 1 10em;
+  //min-height: 5em;
 `;
+
+const Button = styled.button`
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: ${({ active }) => (active ? "white" : `transparent`)} none;
+  color: ${({ active }) => (active ? "black" : `white`)} none;
+
+  padding: 0.5em;
+  border-radius: 2.55px 2.5px 0 0;
+`;
+
 export const Projects = ({ data }) => {
   const [projectData, setProjectData] = useState(data);
-  const [settings, setSettings] = useState({ filter: [], sort: "ascending" });
-  const Filter = () => {
-    let newData = [...projectData];
-    const filtered = newData.filter((data) =>
-      data.tools.framework.includes("React")
-    );
-    setProjectData(filtered);
-  };
+  const [settings, setSettings] = useState({
+    filterItems: [],
+    sort: "ascending",
+  });
+
+  useEffect(() => {
+    let newData = [...data];
+    const filtered = newData.filter((data) => {
+      const tools = [...data.tools.framework, ...data.tools.language];
+      for (const i of settings.filterItems) {
+        if (tools.includes(i)) {
+          return true;
+        }
+      }
+      return false;
+    });
+    if (filtered.length < 1) {
+      setProjectData(data);
+    } else {
+      setProjectData(filtered);
+    }
+  }, [settings]);
+
   const projects = projectData.map((project) => {
     return (
       <Flipped flipId={project.id} key={project.id}>
-        <Test>
+        <Test wide>
           <Project projectData={project} key={project.id} />
         </Test>
       </Flipped>
     );
   });
+
   return (
-    <div className={"icon"}>
-      <Header>Projects</Header>
-      <div style={{ display: "flex", alignSelf: "center", zIndex: "1" }}>
-        <label
-          htmlFor=""
-          style={{
-            color: "black",
-            background: "none",
-            border: "none",
-          }}
-        >
-          <input
-            onChange={Filter("React")}
-            type={"checkbox"}
-            value={"React"}
-            style={{
-              appearance: "none",
-            }}
+    <div
+      className={"icon"}
+      style={{ alignItems: "center", justifyContent: "center", height: "90vh" }}
+    >
+      <Header style={{ fontSize: "7em" }}>Projects</Header>
+      <div
+        style={{
+          display: "flex",
+          zIndex: "1",
+          flexWrap: "wrap",
+          width: "70vw",
+          justifyContent: "space-between",
+          borderBottom: "2px solid whitesmoke",
+        }}
+      >
+        <div style={{ display: "flex" }}>
+          <FilterButton
+            setSettings={setSettings}
+            settings={settings}
+            name={"React"}
           />
-          <SiReact />
-          React
-        </label>
+          <FilterButton
+            setSettings={setSettings}
+            settings={settings}
+            name={"Javascript"}
+          />
+          <FilterButton
+            setSettings={setSettings}
+            settings={settings}
+            name={"Styled Components"}
+          />
+          <FilterButton
+            setSettings={setSettings}
+            settings={settings}
+            name={"GDScript"}
+          />
+        </div>
 
-        <button onClick={() => setProjectData(data)}>All</button>
-        <button
-          onClick={() => {
-            const sorted = projectData.sort(() =>
-              Math.random() > 0.5 ? 1 : -1
-            );
-            setProjectData([...sorted]);
-          }}
-        >
-          Shuffle
-        </button>
+        <div>
+          <Button
+            onClick={() => {
+              const sorted = projectData.sort(() =>
+                Math.random() > 0.5 ? 1 : -1
+              );
+              setProjectData([...sorted]);
+            }}
+          >
+            <Icon
+              icon="mdi:shuffle"
+              style={{
+                width: "2em",
+                height: "2em",
+              }}
+            />
+          </Button>
 
-        {/*SORTING*/}
-        <button
-          onClick={() => {
-            const sorted = projectData.sort((a, b) => a.release - b.release);
-            setProjectData([...sorted]);
-          }}
-        >
-          Ascending (Oldest to Newest)
-        </button>
-        <button
-          onClick={() => {
-            const sorted = projectData.sort((a, b) => b.release - a.release);
-            setProjectData([...sorted]);
-          }}
-        >
-          Descending (Newest to Oldest)
-        </button>
+          {/*SORTING*/}
+          <Button
+            onClick={() => {
+              const sorted = projectData.sort((a, b) => a.release - b.release);
+              setProjectData([...sorted]);
+            }}
+          >
+            <Icon
+              icon="mdi:sort-clock-ascending-outline"
+              style={{
+                width: "2em",
+                height: "2em",
+              }}
+            />
+          </Button>
+          <Button
+            onClick={() => {
+              const sorted = projectData.sort((a, b) => b.release - a.release);
+              setProjectData([...sorted]);
+            }}
+          >
+            <Icon
+              icon="mdi:sort-clock-descending-outline"
+              style={{
+                width: "2em",
+                height: "2em",
+              }}
+            />
+          </Button>
+        </div>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          minWidth: "100%",
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Flipper flipKey={projectData} spring={"gentle"}>
           <ProjectContainer>{projects} </ProjectContainer>
         </Flipper>
