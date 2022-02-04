@@ -50,8 +50,9 @@ export const Tools = ({ data }) => {
     />
   ));
 
-  const Languages = [...language].map((lang) => (
+  const Languages = [...language].map((lang, idx) => (
     <DevTool
+      key={idx * 11233}
       id={lang}
       state={state}
       onMouseEnter={(e) => setState(e.target.id)}
@@ -60,8 +61,9 @@ export const Tools = ({ data }) => {
     </DevTool>
   ));
 
-  const Frameworks = [...framework].map((frame) => (
+  const Frameworks = [...framework].map((frame, idx) => (
     <DevTool
+      key={idx * 1164334253}
       id={frame}
       state={state}
       onMouseEnter={(e) => setState(e.target.id)}

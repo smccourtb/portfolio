@@ -1,213 +1,142 @@
 import styled, { keyframes } from "styled-components/macro";
-import { Tools } from "./Tools";
-
-const drift = keyframes`
-  0% {
-    background-position: top center;
-  }
-  25% {
-    background-position: center right;
-  }
-  50% {
-    background-position: top right;
-  }
-  75% {
-    background-position: center left;
-  }
-  100% {
-    background-position: bottom right;
-  }
-`;
+import { theme } from "../styles/Themes";
+import { css } from "styled-components";
+import { useState } from "react";
 
 const ProjectContainer = styled.div`
-  width: 100%;
-  max-width: 28em;
   height: 100%;
-  border-radius: 20px;
-  //position: relative;
-  -webkit-transition: 1.5s ease-in-out;
-  transition: 1.5s ease-in-out;
+  width: 100%;
+  position: relative;
+  -webkit-transition: 0.7s ease-in-out;
+  transition: 0.7s ease-in-out;
   transform-style: preserve-3d;
-  margin-top: 5em;
-  font-size: 1em;
+  font-size: 1rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
 
   :hover {
-    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
   }
 `;
+
 const Front = styled.div`
   z-index: 2;
   width: 100%;
-
-  background-color: ${({ theme: { colors } }) => colors.lightShade};
-  color: ${({ theme: { colors } }) => colors.darkShade};
-  text-align: center;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  border-radius: 1em;
-`;
-
-const Back = styled.div`
-  z-index: 0;
-  height: 16.5em;
-  position: absolute;
-  width: 80%;
-  padding: 1em 1.5em;
-  box-shadow: black 0 1em 2.5em -1em;
-
-  background-color: ${({ theme: { colors } }) => colors.lightShade};
-  color: ${({ theme: { colors } }) => colors.darkShade};
-  transform: rotateY(180deg);
-  text-align: center;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  border-radius: 1em;
-  top: -3.35em;
-`;
-
-const LowerBack = styled(Back)`
-  top: 15em;
-  height: 8em;
-`;
-
-const ProjectScreenShot = styled.img`
-  height: 20em;
-  width: 100%;
-  border-radius: 1.2em;
-  top: -7em;
-  position: absolute;
-  background-image: url(${({ image }) => image});
-
-  background-size: 110%;
-  background-position: top center;
-  box-shadow: black 0 2em 4em -2em;
-
-  animation: ${drift} 35s alternate infinite;
-  animation-timing-function: ease-in-out;
-`;
-
-const Content = styled.div`
-  transform: translatez(5em) scale(0.8);
-  line-height: 1.5em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
   height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  border-radius: 2px;
+  background: ${({ color }) =>
+    css`linear-gradient(to right bottom, ${color.secondary}, ${color.primary})`};
+  box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
 
   :before {
     content: "";
     position: absolute;
-    bottom: -2em;
-    height: 3px;
-    background-color: ${({ theme: { colors } }) => colors.mainBrand};
-    width: 70px;
-    left: 50%;
-    transform: translateX(-50%);
+    border: 2px solid white;
+    border-radius: 2px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
   }
 `;
 
-const UpperContent = styled(Content)`
-  gap: 1em;
-  justify-content: space-evenly;
-  padding-bottom: 3em;
-
-  :before {
-    bottom: 0;
-  }
-`;
-
-const LowerContent = styled(Content)`
+const Back = styled.div`
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  transform: rotateY(180deg);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-
-  :before {
-    bottom: 0.2em;
-  }
-`;
-
-const TextContainer = styled.div`
-  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  align-items: flex-start;
-  margin-top: 16em;
-  text-align: left;
-  gap: 1em;
+  background: ${({ image }) => `url(${image}) no-repeat 50% 100%`};
+  background-size: cover;
+
+  :before {
+    content: "";
+    position: absolute;
+    border: ${({ color }) => color && `2px solid ${color.primary}`};
+    border-radius: 2px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+  }
+`;
+
+const Content = styled.div`
+  transform: translatez(5em) scale(0.8);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 2em;
-  color: ${({ primary, theme: { colors } }) =>
-    primary ? colors.mainBrand : colors.darkShade};
-  font-family: "Roboto Slab", serif;
-`;
-
-const ToolsTitle = styled.h4`
-  font-size: 1.4em;
-  color: ${({ primary, theme: { colors } }) =>
-    primary ? colors.mainBrand : colors.darkShade};
-  font-family: "Roboto Slab", serif;
-`;
-
-const ProjectDescription = styled.p`
-  font-family: "Raleway", serif;
-  font-size: 1em;
+  text-transform: uppercase;
+  color: whitesmoke;
+  font-family: "Paytone One", serif;
+  flex-wrap: wrap;
+  font-size: 150%;
+  padding-right: 5em;
 `;
 
 const Button = styled.button`
-  border-radius: 0.3em;
-  background-color: transparent;
-  border: 2px solid ${({ theme: { colors } }) => colors.lightAccent};
-  color: ${({ theme: { colors } }) => colors.lightAccent};
-  padding: 0.3em 1em;
+  background-color: white;
+  border: ${({ color }) => color && `2px solid ${color.primary}`};
+
+  border-radius: 2px;
+  color: ${({ color }) => color && `${color.primary}`};
+  font-size: 1em;
   outline: none;
-  font-size: 1.1em;
+  padding: 0.25em 0.5em;
   text-decoration: none;
   transition: all 0.3s ease-out;
+  font-weight: bold;
+  box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.3);
 
   :hover {
-    color: ${({ theme: { colors } }) => colors.mainBrand};
-    border: 2px solid ${({ theme: { colors } }) => colors.mainBrand};
+    color: white;
+    //border: 2px solid white;
+    background-color: ${({ color }) => color && `${color.primary}`};
+
     transform: scale(110%);
   }
 `;
 
-export const Project = ({ projectData }) => {
-  const { name, description, image, tools, links } = { ...projectData };
+const pickColor = (obj) => {
+  const keys = Object.keys(obj);
+  return obj[keys[(keys.length * Math.random()) << 0]];
+};
 
+export const Project = ({ projectData }) => {
+  const [color, setColor] = useState(pickColor(theme.cardColors));
+  const { name, image, links } = { ...projectData };
   return (
     <ProjectContainer>
-      <Front>
+      <Front image={image} color={color}>
         <Content>
-          <ProjectScreenShot image={image} />
-          <TextContainer>
-            <ProjectTitle primary>{name}</ProjectTitle>
-            <ProjectDescription>{description}</ProjectDescription>
-          </TextContainer>
+          <ProjectTitle>{name}</ProjectTitle>
         </Content>
       </Front>
 
-      <Back>
-        <ToolsTitle>Built With</ToolsTitle>
-        <UpperContent>
-          <Tools data={tools} />
-        </UpperContent>
-      </Back>
-      <LowerBack>
-        Take a closer look
-        <LowerContent>
-          {Object.keys(links).map((link) => (
-            <Button as={"a"} href={links[link]}>
+      <Back image={image} color={color}>
+        <Content>
+          {Object.keys(links).map((link, idx) => (
+            <Button color={color} key={idx * 12} as={"a"} href={links[link]}>
               {link}
             </Button>
           ))}
-        </LowerContent>
-      </LowerBack>
+        </Content>
+      </Back>
     </ProjectContainer>
   );
 };

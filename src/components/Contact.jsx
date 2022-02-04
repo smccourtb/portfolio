@@ -1,102 +1,111 @@
 import { Container, Header } from "../styles/shared-styles";
-import Arrow from "../assets/images/arrow.svg";
 import styled from "styled-components";
-import { useState } from "react";
+import ContactForm from "./ContactForm";
+import LinkedInIcon from "../assets/icons/linkedin.svg";
+import GithubIcon from "../assets/icons/github-icon.svg";
+import CodePenIcon from "../assets/icons/codepen.svg";
+import FrontEndMentorIcon from "../assets/icons/frontendmentor.svg";
+import Arrow from "./Arrow";
 
-const ArrowImg = styled.img`
-  transform: rotate(90deg);
-  height: 100%;
-`;
-
-const ContactButton = styled.button`
-  background: transparent;
-  border-radius: 0.25em;
-  padding: 0.5em;
-  //height: 25%;
-  align-self: flex-end;
-  //margin-bottom: 0.5em;
-  font-size: 1em;
-`;
-
-const Footer = styled.footer`
-  background-color: white;
-  height: 20%;
-  margin-top: auto;
+const Footer = styled.div`
+  font-size: 0.5em;
   width: 100%;
-  filter: invert(100%);
+  height: 12em;
+  position: relative;
+  overflow: hidden;
+
+  :before {
+    content: "";
+    position: absolute;
+    top: -2.25em;
+    left: -2.5em;
+    width: 19.5em;
+    height: 6em;
+    border-radius: 1.5em;
+    box-shadow: 10em 10em 0 200em tomato;
+  }
+
+  :after {
+    content: "";
+    position: absolute;
+    top: -2em;
+    left: -3em;
+    width: 20.5em;
+    height: 6.25em;
+    border-radius: 1.75em;
+    box-shadow: 5em 5em 0 100em rgb(52, 53, 64);
+    transform: scaleY(-1);
+  }
 `;
-const encode = (data) => {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-};
+
+const Logo = styled.img`
+  height: 100%;
+  padding: 0 0.5em;
+`;
 
 export const Contact = () => {
-  const [data, setData] = useState({ name: "", email: "", message: "" });
-
-  const handleChange = (key, sanitizeFn) => (e) => {
-    const value = sanitizeFn ? sanitizeFn(e.target.value) : e.target.value;
-    setData({
-      ...data,
-      [key]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", ...this.state }),
-    })
-      .then(() => alert("Success!"))
-      .catch((error) => alert(error));
-
-    e.preventDefault();
-  };
   return (
-    <Container column fullPage padding>
-      <Header>Contact Me</Header>
-      <p>If you'd like to reach out, I'd love to hear from you!</p>
-      <div style={{ height: "5em", display: "flex", gap: "1em" }}>
-        <ArrowImg src={Arrow} />
-        <ContactButton>Hire Me</ContactButton>
-      </div>
-      <p style={{ position: "absolute", bottom: "100px" }}>HI THERE</p>
-      <form
-        style={{ display: "flex", flexDirection: "column" }}
-        name="contact"
-        method="post"
-        onSubmit={handleSubmit}
+    <div className={"icon"} style={{ color: "black" }}>
+      <Header style={{ color: "white" }}>Contact</Header>
+      <div
+        style={{
+          height: "75%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+        }}
       >
-        <input type="hidden" name="form-name" value="contact" />
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          value={data.name}
-          id="name"
-          name="name"
-          onChange={handleChange("name")}
-        />
-        <label htmlFor="email">Email</label>
-
-        <input
-          type="email"
-          value={data.email}
-          id="email"
-          name="email"
-          onChange={handleChange("email")}
-        />
-        <label htmlFor="message">Message</label>
-
-        <textarea
-          value={data.message}
-          id="message"
-          name="message"
-          onChange={handleChange("message")}
-        />
-        <button type="submit">Send</button>
-      </form>
-      <Footer />
-    </Container>
+        <div>
+          <p
+            style={{ fontSize: ".9em", textAlign: "center", fontWeight: "700" }}
+          >
+            If you'd like to reach out, I'd love to hear from you!
+          </p>
+        </div>
+        <ContactForm />
+      </div>
+      <p
+        style={{
+          fontSize: ".8em",
+          padding: "0 40% 1em 1em",
+          fontWeight: "700",
+          textAlign: "left",
+        }}
+      >
+        Or check out what i've been up to.
+      </p>
+      {/*<Arrow*/}
+      {/*  firstColor="rgb(52, 53, 64)"*/}
+      {/*  secondColor="white"*/}
+      {/*  fillPercentage={"59.4%"}*/}
+      {/*/>*/}
+      <Footer>
+        <div
+          style={{
+            height: "2.5em",
+            // display: "flex",
+            gap: ".5em",
+            width: "15em",
+            marginTop: ".5em",
+            marginLeft: "1em",
+            justifyContent: "center",
+            zIndex: "2",
+            position: "absolute",
+          }}
+        >
+          <a href="https://www.github.com/smccourtb">
+            <Logo src={GithubIcon} alt="" />
+          </a>
+          <a href="https://www.frontendmentor.io/profile/smccourtb">
+            <Logo src={FrontEndMentorIcon} alt="" />
+          </a>
+          <Logo src={CodePenIcon} alt="" />
+          <a href="https://www.linkedin.com/in/shawnathan-mccourt/">
+            <Logo src={LinkedInIcon} alt="" />
+          </a>
+        </div>
+      </Footer>
+    </div>
   );
 };

@@ -2,90 +2,179 @@ import styled, { keyframes } from "styled-components/macro";
 import { Letter } from "./Letter";
 import { useState } from "react";
 import { Typing } from "./Typing";
-import { Container } from "../styles/shared-styles";
+import ThreeDEffect from "./ThreeDEffect";
+import { css } from "styled-components";
 
-const slide = keyframes`
-  0% {
-    transform: translateX(-150%);
+const Pronounce = keyframes`
+  from {
+    color: inherit;
   }
-  50% {
-    transform: translateX(0%);
-  }
-  55% {
-    letter-spacing: -.25em;
-  }
-  65% {
-    letter-spacing: unset;
-    transform: translateX(0px)
-
-  }
-  90% {
-    letter-spacing: unset;
-    transform: translateX(0px)
-  }
-  95% {
-    transform: translateX(-30px)
-  }
-`;
-const grow = keyframes`
-  85% {
-    transform: translateY(-.67em) scale(300%);
+  to {
+    color: #f04d54
   }
 `;
 
-const OpeningHeader = styled.h1`
+const drawnPronounce = keyframes`
+
+  100% {
+    transform: scale(1);
+    opacity: 100%;
+
+  }
+`;
+
+const OpeningHeader = styled.div`
   font-family: "Paytone One", serif;
-  font-size: 1.5em;
+  font-size: 3em;
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.5em;
+  font-weight: bold;
+  gap: 1em;
+  //transition: ease-out 0.6s;
 `;
 
-const JobTitle = styled.p`
-  font-family: "Raleway", sans-serif;
-  color: ${(props) => props.theme.colors.darkAccent};
-  animation: ${slide} 2s 6s ease-in-out;
-  text-align: right;
-  flex-grow: 1;
+const Pronunciation = styled.div`
+  font-family: ${({ drawn }) => (drawn ? "Rock Salt" : "inherit")};
+  animation: ${Pronounce} 0.7s ease-out;
+  animation-delay: ${({ delay }) => delay};
+  opacity: ${({ drawn }) => drawn && "35%"};
+`;
+const Splay = keyframes`
+  100% {
+    opacity: 5%;
+    font-size: 3em;
+  }
+`;
+const DrawnPronunciation = styled.div`
+  font-family: "Rock Salt", serif;
+  animation: ${({ different }) =>
+    different
+      ? css`
+          ${Splay} .7s 12.5s cubic-bezier(0.26, -0.95, 1, -0.54) forwards
+        `
+      : css`
+          ${drawnPronounce} 0.7s cubic-bezier(1, -0.09, 0.79, 0.98) forwards
+        `};
+  animation-delay: ${({ delay }) => delay};
+  opacity: 0;
+  position: relative;
+  //left: -200%;
+  transform: scale(10);
 `;
 
-const Period = styled.span`
-  animation: ${grow} 0.3s 1.7s ease-in-out;
-  height: 100%;
+const FadeOut = keyframes`
+  100% {
+    opacity: 0;
+  }
+`;
+
+const HandWritingContainer = styled.div`
+  font-size: 1em;
+  opacity: 5%;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25em;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  //left: 0;
+  //right: 0;
+  align-self: center;
+  top: -20%;
+  padding: 0.5em;
+  animation: ${FadeOut} 1s 12s forwards cubic-bezier(0.26, -0.95, 1, -0.54);
 `;
 
 export const Greeting = () => {
   const [state, setState] = useState(false);
+  const [movement, setMovement] = useState([]);
   const introLetters = (text) =>
     text.split("").map((letter, idx) => <Letter key={idx} letter={letter} />);
 
   return (
-    <Container primary column fullPage>
+    <div
+      className={"icon"}
+      onTouchMove={(e) =>
+        setMovement((prev) => [e.touches[0].clientX, e.touches[0].clientY])
+      }
+      onMouseMove={(e) => setMovement((prev) => [e.clientX, e.clientY])}
+    >
+      <DrawnPronunciation
+        style={{
+          position: "absolute",
+          top: "30%",
+          left: "0",
+          right: "0",
+          // bottom: "93%",
+          opacity: "0%",
+          fontSize: ".1em",
+        }}
+        delay={"12.4s"}
+        different
+      >
+        S
+      </DrawnPronunciation>
       <OpeningHeader>
-        {introLetters("Hi!")}
-        <br />
         <div
           style={{
-            display: "flex",
+            zIndex: "1",
             width: "100%",
-            gap: ".1em",
-            fontFamily: "inherit",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
           }}
         >
-          <div style={{ fontFamily: "inherit" }}>{introLetters("My")}</div>
-          <div style={{ fontFamily: "inherit" }}>{introLetters("Name")}</div>
-          <div style={{ fontFamily: "inherit" }}>{introLetters("Is")}</div>
+          <div>{introLetters("Hi!")}</div>
+          <div style={{ display: "flex", gap: ".2em" }}>
+            <div>{introLetters("My")}</div>
+            <div>{introLetters("name")}</div>
+            <div>{introLetters("is")}</div>
+          </div>
 
-          <div style={{ display: "flex", fontFamily: "inherit" }}>
+          <div
+            style={{
+              display: "flex",
+              // fontSize: ".9em",
+              alignSelf: "flex-start",
+            }}
+          >
             {state ? (
-              introLetters("Shawnathan.")
+              <div style={{ display: "flex" }}>
+                <Pronunciation delay={".1s"}>
+                  {introLetters("Shaw")}
+                </Pronunciation>
+                <Pronunciation delay={"1.1s"}>
+                  {introLetters("na")}
+                </Pronunciation>
+                <Pronunciation delay={"2.1s"}>
+                  {introLetters("than.")}
+                </Pronunciation>
+              </div>
             ) : (
               <Typing setState={setState} />
             )}
           </div>
         </div>
+
+        <HandWritingContainer>
+          <DrawnPronunciation
+            style={{ alignSelf: "flex-start" }}
+            delay={"8.4s"}
+          >
+            Shaw
+          </DrawnPronunciation>
+          <DrawnPronunciation delay={"9.4s"}>nuh</DrawnPronunciation>
+          <DrawnPronunciation style={{ alignSelf: "flex-end" }} delay={"10.4s"}>
+            then
+          </DrawnPronunciation>
+        </HandWritingContainer>
+
+        <ThreeDEffect move={movement} />
       </OpeningHeader>
-      <div style={{ width: "100%", display: "flex", position: "relative" }}>
-        <JobTitle>aspiring web developer</JobTitle>
-        <Period>.</Period>
-      </div>
-    </Container>
+    </div>
   );
 };

@@ -1,0 +1,52 @@
+.line {
+    width: 100vw;
+}
+
+.left, .right {
+    width: 50vw;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.left {
+    color: white;
+    transform: skew(0deg, -5deg);
+}
+
+.right {
+    color: black;
+    transform: skew(0deg, 5deg);
+}
+
+.left .content {
+    width: 100vw;
+    text-align: center;
+}
+
+.right .content {
+    width: 100vw;
+    text-align: center;
+    transform: translate(-50vw);
+}
+
+.spanFast, .spanSlow {
+    display: inline-block;
+    font-size: .5em;
+    transition: ease-out .2s;
+}
+
+
+.wrap {
+    font-size: .5em;
+    line-height: .6em;
+    z-index: 1;
+    margin-top: auto;
+    position: absolute;
+    left: 0;
+    bottom: 20%;
+    right: 0;
+
+}
+
+
+
