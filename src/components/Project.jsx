@@ -1,5 +1,7 @@
 import styled, { keyframes } from "styled-components/macro";
-import { Tools } from "./Tools";
+import { theme } from "../styles/Themes";
+import { css } from "styled-components";
+import { useState } from "react";
 
 const ProjectContainer = styled.div`
   height: 100%;
@@ -24,7 +26,8 @@ const Front = styled.div`
   transform-style: preserve-3d;
   backface-visibility: hidden;
   border-radius: 2px;
-  background: linear-gradient(to right bottom, #7ed56f, #28b485);
+  background: ${({ color }) =>
+    css`linear-gradient(to right bottom, ${color.secondary}, ${color.primary})`};
   box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
@@ -48,7 +51,6 @@ const Back = styled.div`
   position: absolute;
   box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.3);
   border-radius: 2px;
-  background-color: ${({ theme: { colors } }) => colors.lightShade};
   transform: rotateY(180deg);
   transform-style: preserve-3d;
   backface-visibility: hidden;
@@ -62,7 +64,7 @@ const Back = styled.div`
   :before {
     content: "";
     position: absolute;
-    border: 2px solid #28b485;
+    border: ${({ color }) => color && `2px solid ${color.primary}`};
     border-radius: 2px;
     width: calc(100% - 10px);
     height: calc(100% - 10px);
@@ -84,13 +86,16 @@ const ProjectTitle = styled.h3`
   font-family: "Paytone One", serif;
   flex-wrap: wrap;
   font-size: 150%;
+  padding-right: 5em;
 `;
 
 const Button = styled.button`
   background-color: white;
-  border: 2px solid #28b485;
+  border: ${({ color }) => color && `2px solid ${color.primary}`};
+
   border-radius: 2px;
-  color: #28b485;
+  color: ${({ color }) => color && `${color.primary}`};
+
   outline: none;
   padding: 0.25em 0.5em;
   text-decoration: none;
@@ -100,27 +105,33 @@ const Button = styled.button`
 
   :hover {
     color: white;
-    border: 2px solid white;
-    background-color: #28b485;
+    //border: 2px solid white;
+    background-color: ${({ color }) => color && `${color.primary}`};
+
     transform: scale(110%);
   }
 `;
 
-export const Project = ({ projectData, wide }) => {
-  const { name, image, links } = { ...projectData };
+const pickColor = (obj) => {
+  const keys = Object.keys(obj);
+  return obj[keys[(keys.length * Math.random()) << 0]];
+};
 
+export const Project = ({ projectData }) => {
+  const [color, setColor] = useState(pickColor(theme.cardColors));
+  const { name, image, links } = { ...projectData };
   return (
-    <ProjectContainer wide={wide}>
-      <Front image={image}>
+    <ProjectContainer>
+      <Front image={image} color={color}>
         <Content>
           <ProjectTitle>{name}</ProjectTitle>
         </Content>
       </Front>
 
-      <Back image={image}>
+      <Back image={image} color={color}>
         <Content>
           {Object.keys(links).map((link, idx) => (
-            <Button key={idx * 12} as={"a"} href={links[link]}>
+            <Button color={color} key={idx * 12} as={"a"} href={links[link]}>
               {link}
             </Button>
           ))}
