@@ -60,7 +60,6 @@ export const Projects = ({ data }) => {
 
   return (
     <Container
-      className={"icon"}
       style={{ alignItems: "center", justifyContent: "center", height: "90vh" }}
     >
       <Header>Projects</Header>

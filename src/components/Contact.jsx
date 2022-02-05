@@ -44,7 +44,7 @@ const Logo = styled.img`
 
 export const Contact = () => {
   return (
-    <Container className={"icon"} style={{ color: "black" }}>
+    <Container style={{ color: "black" }}>
       <Header style={{ color: "white" }}>Contact</Header>
       <div
         style={{

@@ -7,6 +7,7 @@ import { Contact } from "./components/Contact";
 import projectsData from "./ProjectsData";
 import "./styles/font-styles.css";
 import styled, { css } from "styled-components";
+import { Container } from "./styles/shared-styles";
 
 const Page = styled.div`
   position: absolute;
@@ -56,7 +57,7 @@ const ContactContainer = styled.div`
     background: black;
   }
 
-  :target #p1 .icon {
+  :target #p1 ${Container} {
     -webkit-filter: blur(3px);
   }
 
@@ -70,7 +71,7 @@ const ContactContainer = styled.div`
   }
 
   // this makes the content of the page visible
-  :target #p4 .icon {
+  :target #p4 ${Container} {
     transform: translateX(0) !important;
     transition-delay: 1s;
   }
@@ -87,7 +88,7 @@ const AboutContainer = styled.div`
     background: black;
   }
 
-  :target #p1 .icon {
+  :target #p1 ${Container} {
     -webkit-filter: blur(3px);
   }
 
@@ -101,7 +102,7 @@ const AboutContainer = styled.div`
   }
 
   // this makes the content of the page visible
-  :target #p2 .icon {
+  :target #p2 ${Container} {
     transform: translateX(0) !important;
     transition-delay: 1s;
   }
@@ -118,7 +119,7 @@ const ProjectsContainer = styled.div`
     background: black;
   }
 
-  :target #p1 .icon {
+  :target #p1 ${Container} {
     -webkit-filter: blur(3px);
   }
 
@@ -132,7 +133,7 @@ const ProjectsContainer = styled.div`
   }
 
   // this makes the content of the page visible
-  :target #p3 .icon {
+  :target #p3 ${Container} {
     transform: translateX(0) !important;
     transition-delay: 1s;
   }
@@ -154,24 +155,16 @@ function App() {
               <Navbar id={"menu"}>
                 <List>
                   <a href={"#home"}>
-                    <NavbarItem className="icon" id={"uno"}>
-                      Home
-                    </NavbarItem>
+                    <NavbarItem id={"uno"}>Home</NavbarItem>
                   </a>
                   <a href={"#t2"}>
-                    <NavbarItem className="icon" id={"dos"}>
-                      About
-                    </NavbarItem>
+                    <NavbarItem id={"dos"}>About</NavbarItem>
                   </a>
                   <a href={"#t3"}>
-                    <NavbarItem className="icon" id={"tres"}>
-                      Projects
-                    </NavbarItem>
+                    <NavbarItem id={"tres"}>Projects</NavbarItem>
                   </a>
                   <a href={"#t4"}>
-                    <NavbarItem className="icon" id={"cuatro"}>
-                      Contact
-                    </NavbarItem>
+                    <NavbarItem id={"cuatro"}>Contact</NavbarItem>
                   </a>
                 </List>
               </Navbar>

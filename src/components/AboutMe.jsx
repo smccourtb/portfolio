@@ -116,10 +116,7 @@ export const AboutMe = () => {
     return Math.random() * (max - min) + min;
   };
   return (
-    <Container
-      className={"icon"}
-      onTransitionEnd={() => setActive((prev) => !prev)}
-    >
+    <Container onTransitionEnd={() => setActive((prev) => !prev)}>
       <Header>About</Header>
 
       {active ? (
