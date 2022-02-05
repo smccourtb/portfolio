@@ -4,7 +4,7 @@ import { Flipper, Flipped } from "react-flip-toolkit";
 import { useEffect, useState } from "react";
 import FilterButton from "./projects/FilterButton";
 import SortButton from "./projects/SortButton";
-import { Container, Header } from "../styles/GlobalStyles";
+import { Container, Header } from "../styles/global/GlobalStyles";
 
 const ProjectContainer = styled.div`
   display: flex;

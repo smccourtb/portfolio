@@ -28,9 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     @media (min-width: 1200px) {
       font-size: 21px;
     }
-    @media (min-width: 1400px) {
-      font-size: 23px;
-    }
+
 
     a {
       text-decoration: none;
@@ -59,8 +57,6 @@ export const Container = styled.section`
   transform: ${({ home }) =>
     home ? `translateY(10%) !important` : `translateY(360%)`};
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1.25);
-
-  /* keep an eye on these two. thing s were working fine before these guys */
   display: flex;
   flex-direction: column;
 `;

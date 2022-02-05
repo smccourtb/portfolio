@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { theme } from "../../styles/Themes";
+import { theme } from "../../styles/global/Themes";
 import { css } from "styled-components";
 import { useState } from "react";
 

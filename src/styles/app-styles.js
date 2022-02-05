@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Container } from "./GlobalStyles";
+import { Container } from "./global/GlobalStyles";
 
 export const Page = styled.div`
   position: absolute;

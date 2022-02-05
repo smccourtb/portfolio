@@ -4,7 +4,7 @@ import LinkedInIcon from "../assets/icons/linkedin.svg";
 import GithubIcon from "../assets/icons/github-icon.svg";
 import CodePenIcon from "../assets/icons/codepen.svg";
 import FrontEndMentorIcon from "../assets/icons/frontendmentor.svg";
-import { Container, Header } from "../styles/GlobalStyles";
+import { Container, Header } from "../styles/global/GlobalStyles";
 
 const Footer = styled.div`
   font-size: 0.5em;

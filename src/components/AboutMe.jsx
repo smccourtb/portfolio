@@ -2,19 +2,18 @@ import { SiCss3, SiHtml5, SiJavascript, SiReact } from "react-icons/si";
 import Slide from "./aboutMe/Slide";
 import styled, { css, keyframes } from "styled-components";
 import { useState } from "react";
-import { Container, Header } from "../styles/GlobalStyles";
-
-const FloatUp = keyframes`
-  0% {
-    transform: translateY(500%);
-  }
-  50% {
-    opacity: 100%;
-  }
-  100% {
-    transform: translateY(-200%);
-  }
-`;
+import { Container, Header } from "../styles/global/GlobalStyles";
+import { DevelopmentIcon } from "./projects/DevelopmentIcon";
+import {
+  AnimContainer,
+  Content,
+  ContentContainer,
+  Paragraph,
+  Row,
+  Snippet,
+  Strikethrough,
+  TextBorder,
+} from "../styles/about-styles";
 
 const AnimContainer = styled.div`
   animation: ${({ delay, speed }) =>
