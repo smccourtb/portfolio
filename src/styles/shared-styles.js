@@ -11,18 +11,19 @@ export const Header = styled.h2`
 `;
 
 export const Container = styled.section`
-  height: ${({ fullPage }) => (fullPage ? "90%" : "unset")};
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   width: 100%;
-  color: ${({ primary, theme: { colors } }) =>
-    primary ? colors.lightShade : colors.darkShade};
-  background-color: ${({ primary, theme: { colors } }) =>
-    primary ? colors.darkShade : colors.lightShade};
-  display: flex;
-  flex-direction: ${({ column }) => (column ? "column" : "row")};
-  align-items: ${({ center }) => (center ? "center" : "flex-start")};
-  justify-content: ${({ space }) => (space ? "space-between" : "unset")};
+  height: 100%;
+  text-align: center;
+  transform: ${({ home }) =>
+    home ? `translateY(10%) !important` : `translateY(360%)`};
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1.25);
 
-  //scroll-snap-align: start;
-  padding: ${({ padding }) => (!padding ? "1.6em" : "unset")};
-  font-size: 1em;
+  /* keep an eye on these two. thing s were working fine before these guys */
+  display: flex;
+  flex-direction: column;
 `;

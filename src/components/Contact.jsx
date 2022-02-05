@@ -1,4 +1,4 @@
-import { Header } from "../styles/shared-styles";
+import { Container, Header } from "../styles/shared-styles";
 import styled from "styled-components";
 import ContactForm from "./ContactForm";
 import LinkedInIcon from "../assets/icons/linkedin.svg";
@@ -44,7 +44,7 @@ const Logo = styled.img`
 
 export const Contact = () => {
   return (
-    <div className={"icon"} style={{ color: "black" }}>
+    <Container className={"icon"} style={{ color: "black" }}>
       <Header style={{ color: "white" }}>Contact</Header>
       <div
         style={{
@@ -105,6 +105,6 @@ export const Contact = () => {
           </a>
         </div>
       </Footer>
-    </div>
+    </Container>
   );
 };

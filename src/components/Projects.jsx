@@ -1,4 +1,4 @@
-import { Header } from "../styles/shared-styles";
+import { Container, Header } from "../styles/shared-styles";
 import { Project } from "./Project";
 import styled from "styled-components/macro";
 import { Flipper, Flipped } from "react-flip-toolkit";
@@ -59,7 +59,7 @@ export const Projects = ({ data }) => {
   });
 
   return (
-    <div
+    <Container
       className={"icon"}
       style={{ alignItems: "center", justifyContent: "center", height: "90vh" }}
     >
@@ -133,6 +133,6 @@ export const Projects = ({ data }) => {
           <ProjectContainer>{projects} </ProjectContainer>
         </Flipper>
       </div>
-    </div>
+    </Container>
   );
 };

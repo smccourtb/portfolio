@@ -1,6 +1,6 @@
 import { SiCss3, SiHtml5, SiJavascript, SiReact } from "react-icons/si";
 import Slide from "./Slide";
-import { Header } from "../styles/shared-styles";
+import { Container, Header } from "../styles/shared-styles";
 import styled, { css, keyframes } from "styled-components";
 import { useState } from "react";
 
@@ -116,7 +116,10 @@ export const AboutMe = () => {
     return Math.random() * (max - min) + min;
   };
   return (
-    <div className={"icon"} onTransitionEnd={() => setActive((prev) => !prev)}>
+    <Container
+      className={"icon"}
+      onTransitionEnd={() => setActive((prev) => !prev)}
+    >
       <Header>About</Header>
 
       {active ? (
@@ -192,6 +195,6 @@ export const AboutMe = () => {
       <Snippet>
         I'm looking to join a team of like-minded people to learn and grow with.
       </Snippet>
-    </div>
+    </Container>
   );
 };

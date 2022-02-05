@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Typing } from "./Typing";
 import ThreeDEffect from "./ThreeDEffect";
 import { css } from "styled-components";
+import { Container } from "../styles/shared-styles";
 
 const Pronounce = keyframes`
   from {
@@ -62,7 +63,6 @@ const DrawnPronunciation = styled.div`
   animation-delay: ${({ delay }) => delay};
   opacity: 0;
   position: relative;
-  //left: -200%;
   transform: scale(10);
 `;
 
@@ -80,11 +80,7 @@ const HandWritingContainer = styled.div`
   line-height: 1.25em;
   width: 100%;
   max-width: 500px;
-  position: relative;
-  //left: 0;
-  //right: 0;
   align-self: center;
-  top: -20%;
   padding: 0.5em;
   animation: ${FadeOut} 1s 12s forwards cubic-bezier(0.26, -0.95, 1, -0.54);
 `;
@@ -96,12 +92,13 @@ export const Greeting = () => {
     text.split("").map((letter, idx) => <Letter key={idx} letter={letter} />);
 
   return (
-    <div
-      className={"icon"}
+    <Container
       onTouchMove={(e) =>
         setMovement((prev) => [e.touches[0].clientX, e.touches[0].clientY])
       }
       onMouseMove={(e) => setMovement((prev) => [e.clientX, e.clientY])}
+      home
+      className={"icon"}
     >
       <DrawnPronunciation
         style={{
@@ -175,6 +172,6 @@ export const Greeting = () => {
 
         <ThreeDEffect move={movement} />
       </OpeningHeader>
-    </div>
+    </Container>
   );
 };

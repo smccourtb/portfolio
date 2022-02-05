@@ -10,6 +10,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html, body {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    overflow: hidden;
     font-size: 13px;
     @media (min-width: 375px) {
       font-size: 15px;
@@ -24,7 +28,10 @@ export const GlobalStyle = createGlobalStyle`
       font-size: 21px;
     }
     @media (min-width: 1400px) {
-      font-size: 25px;
+      font-size: 23px;
     }
 
+    a {
+      text-decoration: none;
+    }
   }`;
