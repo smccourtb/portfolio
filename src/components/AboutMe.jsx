@@ -1,6 +1,4 @@
-import { SiCss3, SiHtml5, SiJavascript, SiReact } from "react-icons/si";
 import Slide from "./aboutMe/Slide";
-import styled, { css, keyframes } from "styled-components";
 import { useState } from "react";
 import { Container, Header } from "../styles/global/GlobalStyles";
 import { DevelopmentIcon } from "./projects/DevelopmentIcon";
@@ -111,6 +109,7 @@ const Tooltip = styled.div`
 `;
 export const AboutMe = () => {
   const [active, setActive] = useState(false);
+
   const ranNum = (min, max) => {
     return Math.random() * (max - min) + min;
   };
