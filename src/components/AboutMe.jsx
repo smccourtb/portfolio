@@ -1,8 +1,8 @@
 import { SiCss3, SiHtml5, SiJavascript, SiReact } from "react-icons/si";
-import Slide from "./Slide";
-import { Container, Header } from "../styles/shared-styles";
+import Slide from "./aboutMe/Slide";
 import styled, { css, keyframes } from "styled-components";
 import { useState } from "react";
+import { Container, Header } from "../styles/GlobalStyles";
 
 const FloatUp = keyframes`
   0% {

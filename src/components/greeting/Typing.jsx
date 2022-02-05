@@ -79,7 +79,6 @@ const AutoComplete = styled.div`
 
 const Container = styled.div`
   font-family: inherit;
-  //display: inline-block;
 `;
 
 export const Typing = ({ setState }) => {

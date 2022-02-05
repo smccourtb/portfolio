@@ -1,10 +1,10 @@
-import { Container, Header } from "../styles/shared-styles";
-import { Project } from "./Project";
+import { Project } from "./projects/Project";
 import styled from "styled-components/macro";
 import { Flipper, Flipped } from "react-flip-toolkit";
 import { useEffect, useState } from "react";
-import FilterButton from "./FilterButton";
-import SortButton from "./SortButton";
+import FilterButton from "./projects/FilterButton";
+import SortButton from "./projects/SortButton";
+import { Container, Header } from "../styles/GlobalStyles";
 
 const ProjectContainer = styled.div`
   display: flex;

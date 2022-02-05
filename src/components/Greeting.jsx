@@ -1,10 +1,9 @@
 import styled, { keyframes } from "styled-components/macro";
-import { Letter } from "./Letter";
+import { Letter } from "./greeting/Letter";
 import { useState } from "react";
-import { Typing } from "./Typing";
-import ThreeDEffect from "./ThreeDEffect";
-import { css } from "styled-components";
-import { Container } from "../styles/shared-styles";
+import { Typing } from "./greeting/Typing";
+import ThreeDEffect from "./greeting/ThreeDEffect";
+import { Container } from "../styles/GlobalStyles";
 
 const Pronounce = keyframes`
   from {
@@ -34,16 +33,13 @@ const OpeningHeader = styled.div`
   align-items: flex-start;
   padding: 0.5em;
   font-weight: bold;
-  gap: 1em;
-  //transition: ease-out 0.6s;
 `;
 
 const Pronunciation = styled.div`
-  font-family: ${({ drawn }) => (drawn ? "Rock Salt" : "inherit")};
   animation: ${Pronounce} 0.7s ease-out;
   animation-delay: ${({ delay }) => delay};
-  opacity: ${({ drawn }) => drawn && "35%"};
 `;
+
 const Splay = keyframes`
   100% {
     opacity: 5%;
@@ -52,18 +48,20 @@ const Splay = keyframes`
 `;
 const DrawnPronunciation = styled.div`
   font-family: "Rock Salt", serif;
-  animation: ${({ different }) =>
-    different
-      ? css`
-          ${Splay} .7s 12.5s cubic-bezier(0.26, -0.95, 1, -0.54) forwards
-        `
-      : css`
-          ${drawnPronounce} 0.7s cubic-bezier(1, -0.09, 0.79, 0.98) forwards
-        `};
+  animation: ${drawnPronounce} 0.7s cubic-bezier(1, -0.09, 0.79, 0.98) forwards;
   animation-delay: ${({ delay }) => delay};
   opacity: 0;
   position: relative;
   transform: scale(10);
+`;
+
+const Trademark = styled(DrawnPronunciation)`
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  animation: ${Splay} 0.7s cubic-bezier(0.26, -0.95, 1, -0.54) forwards;
+  animation-delay: ${({ delay }) => delay};
 `;
 
 const FadeOut = keyframes`
@@ -85,6 +83,11 @@ const HandWritingContainer = styled.div`
   animation: ${FadeOut} 1s 12s forwards cubic-bezier(0.26, -0.95, 1, -0.54);
 `;
 
+const Sentence = styled.div`
+  display: flex;
+  gap: 0.2em;
+`;
+
 export const Greeting = () => {
   const [state, setState] = useState(false);
   const [movement, setMovement] = useState([]);
@@ -98,64 +101,28 @@ export const Greeting = () => {
       }
       onMouseMove={(e) => setMovement((prev) => [e.clientX, e.clientY])}
       home
-      className={"icon"}
     >
-      <DrawnPronunciation
-        style={{
-          position: "absolute",
-          top: "30%",
-          left: "0",
-          right: "0",
-          // bottom: "93%",
-          opacity: "0%",
-          fontSize: ".1em",
-        }}
-        delay={"12.4s"}
-        different
-      >
-        S
-      </DrawnPronunciation>
+      <Trademark delay={"12.4s"}>S</Trademark>
       <OpeningHeader>
-        <div
-          style={{
-            zIndex: "1",
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-          }}
-        >
-          <div>{introLetters("Hi!")}</div>
-          <div style={{ display: "flex", gap: ".2em" }}>
-            <div>{introLetters("My")}</div>
-            <div>{introLetters("name")}</div>
-            <div>{introLetters("is")}</div>
-          </div>
+        <div>{introLetters("Hi!")}</div>
+        <Sentence>
+          {/*each word needs a div or each letter would be spaced out due to sentence components gap setting*/}
+          <div>{introLetters("My")}</div>
+          <div>{introLetters("name")}</div>
+          <div>{introLetters("is")}</div>
+        </Sentence>
 
-          <div
-            style={{
-              display: "flex",
-              // fontSize: ".9em",
-              alignSelf: "flex-start",
-            }}
-          >
-            {state ? (
-              <div style={{ display: "flex" }}>
-                <Pronunciation delay={".1s"}>
-                  {introLetters("Shaw")}
-                </Pronunciation>
-                <Pronunciation delay={"1.1s"}>
-                  {introLetters("na")}
-                </Pronunciation>
-                <Pronunciation delay={"2.1s"}>
-                  {introLetters("than.")}
-                </Pronunciation>
-              </div>
-            ) : (
-              <Typing setState={setState} />
-            )}
+        {state ? (
+          <div style={{ display: "flex" }}>
+            <Pronunciation delay={".1s"}>{introLetters("Shaw")}</Pronunciation>
+            <Pronunciation delay={"1.1s"}>{introLetters("na")}</Pronunciation>
+            <Pronunciation delay={"2.1s"}>
+              {introLetters("than.")}
+            </Pronunciation>
           </div>
-        </div>
+        ) : (
+          <Typing setState={setState} />
+        )}
 
         <HandWritingContainer>
           <DrawnPronunciation
