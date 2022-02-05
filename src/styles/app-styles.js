@@ -23,6 +23,9 @@ export const Navbar = styled.nav`
   width: 100%;
   padding: 0;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const List = styled.ul`
@@ -33,7 +36,7 @@ export const List = styled.ul`
 `;
 
 export const NavbarItem = styled.li`
-  margin: 30px 0;
+  margin: 0.5em 0;
   transition: all 0.5s ease-out !important;
   color: #fff;
   font-size: 1em;
