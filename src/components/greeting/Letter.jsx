@@ -1,4 +1,3 @@
-import styled, { keyframes, css } from "styled-components/macro";
 import { useState } from "react";
 import { GreetingLetter } from "../../styles/letter-styles";
 
