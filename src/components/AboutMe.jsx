@@ -13,26 +13,29 @@ import {
   TextBorder,
 } from "../styles/about-styles";
 
-const AnimContainer = styled.div`
-  animation: ${({ delay, speed }) =>
-    css`
-      ${FloatUp} ${speed}s ${delay}s infinite linear
-    `};
-  position: relative;
-  opacity: 0;
-  z-index: 2;
-  left: ${({ position }) => `${position}em`};
+const techIconData = [
+  { name: "Javascript", size: "3em" },
+  { name: "HTML 5", size: "1em" },
+  { name: "CSS 3", size: "1em" },
+  { name: "React", size: "2em" },
+  { name: "Styled Components", size: "1.5em" },
+  { name: "Webstorm", size: "1.5em" },
+  { name: "Webpack", size: "1.5em" },
+  { name: "Git", size: "1.5em" },
+  { name: "Github", size: "1.5em" },
+  { name: "Trello", size: "1.5em" },
+  { name: "Firebase", size: "1.5em" },
+  { name: "GitKraken", size: "1.5em" },
+  { name: "Visual Studio Code", size: "1.5em" },
+];
 
-  :hover {
-    animation-play-state: paused;
-  }
-`;
-const Paragraph = styled.p`
-  text-align: ${({ first }) => (!first ? "left" : "right")};
-  font-size: 0.9em;
-  align-self: center;
-  //height: 0;
-`;
+const hobbyIconData = [
+  { name: "Go for a Bike Ride", size: "1em" },
+  { name: "Play Guitar", size: "3em" },
+  { name: "Go Hiking", size: "1em" },
+  { name: "Play Board Games", size: "2em" },
+  { name: "Develop Video Games", size: "1.5em" },
+];
 
 const Content = styled.div`
   display: flex;
