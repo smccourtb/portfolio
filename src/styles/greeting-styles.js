@@ -5,7 +5,7 @@ const Pronounce = keyframes`
     color: inherit;
   }
   to {
-    color: #f04d54
+    color: #f04d54;
   }
 `;
 
@@ -38,6 +38,7 @@ export const OpeningHeader = styled.div`
   align-items: flex-start;
   padding: 0.5em;
   font-weight: bold;
+  z-index: 5;
 `;
 
 export const Pronunciation = styled.div`
