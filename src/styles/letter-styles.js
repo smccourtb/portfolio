@@ -18,7 +18,7 @@ const squash = keyframes`
 export const GreetingLetter = styled.span`
   font-family: "Paytone One", serif;
   display: inline-block;
-  color: ${({ playIntro, theme: { colors } }) => playIntro && colors.mainBrand};
+  color: ${({ playIntro }) => playIntro && `#f04d54`};
   animation: ${({ playIntro }) =>
     playIntro &&
     css`
