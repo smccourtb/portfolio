@@ -24,9 +24,6 @@ const techIconData = [
   { name: "Git", size: "1.5em" },
   { name: "Github", size: "1.5em" },
   { name: "Trello", size: "1.5em" },
-  { name: "Firebase", size: "1.5em" },
-  { name: "GitKraken", size: "1.5em" },
-  { name: "Visual Studio Code", size: "1.5em" },
 ];
 
 const hobbyIconData = [
