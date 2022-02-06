@@ -17,21 +17,25 @@ export const Projects = ({ data }) => {
   const [projectData, setProjectData] = useState(data);
   const [settings, setSettings] = useState([]);
 
+  const shuffle = () => {
+    const sorted = projectData.sort(() => (Math.random() > 0.5 ? 1 : -1));
+    setProjectData([...sorted]);
+  };
+
   useEffect(() => {
     const newData = [...data];
     const filtered = newData.filter((element) => {
-      const tools = [...element.tools.framework, ...element.tools.language];
       for (const i of settings) {
-        if (tools.includes(i)) {
+        if (element.tag === i) {
           return true;
         }
       }
       return false;
     });
-    if (filtered.length < 1) {
-      setProjectData(newData);
-    } else {
+    if (filtered.length > 0) {
       setProjectData(filtered);
+    } else {
+      setProjectData(newData);
     }
   }, [data, settings]);
 
@@ -45,76 +49,28 @@ export const Projects = ({ data }) => {
     );
   });
 
+  const filterButtons = () => {
+    const tools = ["React", "Javascript", "GDScript"];
+    return tools.map((tool, idx) => (
+      <FilterButton
+        key={idx}
+        setSettings={setSettings}
+        settings={settings}
+        name={tool}
+      />
+    ));
+  };
+
   return (
-    <Container
-      style={{ alignItems: "center", justifyContent: "center", height: "90vh" }}
-    >
+    <ProjectsContainer>
       <Header>Projects</Header>
-      <div
-        style={{
-          display: "flex",
-          zIndex: "1",
-          flexWrap: "wrap",
-          width: "70vw",
-          justifyContent: "space-between",
-          borderBottom: "2px solid whitesmoke",
-        }}
-      >
-        <div style={{ display: "flex" }}>
-          <FilterButton
-            setSettings={setSettings}
-            settings={settings}
-            name={"React"}
-          />
-          <FilterButton
-            setSettings={setSettings}
-            settings={settings}
-            name={"Javascript"}
-          />
-          <FilterButton
-            setSettings={setSettings}
-            settings={settings}
-            name={"Styled Components"}
-          />
-          <FilterButton
-            setSettings={setSettings}
-            settings={settings}
-            name={"GDScript"}
-          />
-        </div>
-
-        <div>
-          <SortButton
-            data={projectData}
-            setData={setProjectData}
-            method={"shuffle"}
-            iconName={"mdi:shuffle"}
-          />
-
-          {/*SORTING*/}
-          <SortButton
-            data={projectData}
-            setData={setProjectData}
-            method={"sortAscending"}
-            iconName={"mdi:sort-clock-ascending-outline"}
-          />
-          <SortButton
-            data={projectData}
-            setData={setProjectData}
-            method={"sortDescending"}
-            iconName={"mdi:sort-clock-descending-outline"}
-          />
-        </div>
-      </div>
-
-      <div
-        style={{
-          minWidth: "100%",
-          alignItems: "center",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <ButtonContainer>
+        <FlexContainer>{filterButtons()}</FlexContainer>
+        <SortButton onClick={shuffle}>
+          <DevelopmentIcon name={"Shuffle"} size={"3em"} />
+        </SortButton>
+      </ButtonContainer>
+      <OuterProjectContainer>
         <Flipper flipKey={projectData} spring={"gentle"}>
           <ProjectContainer>{projects}</ProjectContainer>
         </Flipper>
