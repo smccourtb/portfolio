@@ -24,6 +24,8 @@ import {
   FaBiking,
 } from "react-icons/fa";
 
+import { IoShuffle } from "react-icons/io5";
+
 const DevLogo = styled.div`
   cursor: pointer;
   pointer-events: none;
@@ -69,6 +71,8 @@ const getLogo = (techName, size) => {
       return <FaDiceD20 size={size} />;
     case "Develop Video Games":
       return <FaGamepad size={size} />;
+    case "Shuffle":
+      return <IoShuffle size={size} />;
 
     default:
       return;
