@@ -22,11 +22,10 @@ const FilterButton = ({ setSettings, settings, name }) => {
   const filter = (x) => {
     setSettings((prev) => {
       // check if its already in the filtered array
-      if (prev.filterItems.includes(x)) {
-        const newData = prev.filterItems.filter((item) => item !== x);
-        return { ...prev, filterItems: newData };
+      if (prev.includes(x)) {
+        return prev.filter((item) => item !== x);
       } else {
-        return { ...prev, filterItems: [...prev.filterItems, x] };
+        return [...prev, x];
       }
     });
   };

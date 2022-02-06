@@ -25,16 +25,13 @@ const Test = styled.div`
 
 export const Projects = ({ data }) => {
   const [projectData, setProjectData] = useState(data);
-  const [settings, setSettings] = useState({
-    filterItems: [],
-    sort: "ascending",
-  });
+  const [settings, setSettings] = useState([]);
 
   useEffect(() => {
-    let newData = [...data];
-    const filtered = newData.filter((data) => {
-      const tools = [...data.tools.framework, ...data.tools.language];
-      for (const i of settings.filterItems) {
+    const newData = [...data];
+    const filtered = newData.filter((element) => {
+      const tools = [...element.tools.framework, ...element.tools.language];
+      for (const i of settings) {
         if (tools.includes(i)) {
           return true;
         }
@@ -42,7 +39,7 @@ export const Projects = ({ data }) => {
       return false;
     });
     if (filtered.length < 1) {
-      setProjectData(data);
+      setProjectData(newData);
     } else {
       setProjectData(filtered);
     }
