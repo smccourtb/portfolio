@@ -14,6 +14,7 @@ const projectData = [
       "              or play with up to four players. Change the difficulty by upping\n" +
       "              the grid size or try out the symbols option.",
     image: Memory,
+    tag: "React",
     tools: {
       language: ["Javascript", "HTML 5", "CSS 3"],
       framework: ["Styled Components", "React"],
@@ -32,6 +33,7 @@ const projectData = [
     description:
       "Jot down your thoughts. Rearrange your tasks by dragging the task to the order you'd like. Filter through what you've completed, and what you still need to do.",
     image: ToDo,
+    tag: "React",
     tools: {
       language: ["Javascript", "HTML 5", "CSS 3"],
       framework: ["Styled Components", "React"],
@@ -50,6 +52,7 @@ const projectData = [
     description:
       "Play a round of rock, paper, scissors! Play against the computer with the classic version, or the new take, rock, paper, scissors, lizard, spock!",
     image: RockPaperScissors,
+    tag: "React",
     tools: {
       language: ["Javascript", "HTML 5", "CSS 3"],
       framework: ["React"],
@@ -68,6 +71,7 @@ const projectData = [
     description:
       "Weather app with a hourly and daily forecast. Uses OpenWeatherAPI",
     image: Weather,
+    tag: "Javascript",
     tools: {
       language: ["Javascript", "HTML 5", "CSS 3"],
       framework: [],
@@ -85,6 +89,7 @@ const projectData = [
     description:
       "Mock website where you can browse and 'purchase' audio related products. Has a working shopping cart and form validation",
     image: Audiophile,
+    tag: "React",
     tools: {
       language: ["Javascript", "HTML 5", "CSS 3"],
       framework: ["React", "Styled Components"],
@@ -101,6 +106,7 @@ const projectData = [
     name: "Bones",
     description: "A small dice battle game with rpg elements.",
     image: Audiophile,
+    tag: "GDScript",
     tools: {
       language: ["GDScript"],
       framework: [],
