@@ -1,27 +1,17 @@
 import { Project } from "./projects/Project";
-import styled from "styled-components/macro";
 import { Flipper, Flipped } from "react-flip-toolkit";
 import { useEffect, useState } from "react";
 import FilterButton from "./projects/FilterButton";
-import SortButton from "./projects/SortButton";
-import { Container, Header } from "../styles/global/GlobalStyles";
-
-const ProjectContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  min-width: 100%;
-  max-width: 700px;
-  min-height: 70vh;
-  max-height: 80vh;
-  font-size: 12px;
-  gap: 0.5em;
-  padding: 2em;
-`;
-
-const Test = styled.div`
-  flex: 1 1 10em;
-  //min-height: 5em;
-`;
+import { FlexContainer, Header } from "../styles/global/GlobalStyles";
+import { DevelopmentIcon } from "./projects/DevelopmentIcon";
+import {
+  ButtonContainer,
+  Div,
+  OuterProjectContainer,
+  ProjectContainer,
+  SortButton,
+  ProjectsContainer,
+} from "../styles/projects-styles";
 
 export const Projects = ({ data }) => {
   const [projectData, setProjectData] = useState(data);
@@ -48,9 +38,9 @@ export const Projects = ({ data }) => {
   const projects = projectData.map((project) => {
     return (
       <Flipped flipId={project.id} key={project.id}>
-        <Test wide>
+        <Div>
           <Project projectData={project} key={project.id} />
-        </Test>
+        </Div>
       </Flipped>
     );
   });
@@ -126,9 +116,9 @@ export const Projects = ({ data }) => {
         }}
       >
         <Flipper flipKey={projectData} spring={"gentle"}>
-          <ProjectContainer>{projects} </ProjectContainer>
+          <ProjectContainer>{projects}</ProjectContainer>
         </Flipper>
-      </div>
-    </Container>
+      </OuterProjectContainer>
+    </ProjectsContainer>
   );
 };
