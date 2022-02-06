@@ -60,3 +60,8 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
 `;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: ${({ column }) => (column ? `column` : `row`)};
+`;

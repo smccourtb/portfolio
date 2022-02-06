@@ -2,10 +2,9 @@ import { Letter } from "./greeting/Letter";
 import { useState } from "react";
 import { Typing } from "./greeting/Typing";
 import ThreeDEffect from "./greeting/ThreeDEffect";
-import { Container } from "../styles/global/GlobalStyles";
+import { Container, FlexContainer } from "../styles/global/GlobalStyles";
 import {
   DrawnPronunciation,
-  FlexContainer,
   HandWritingContainer,
   OpeningHeader,
   Pronunciation,

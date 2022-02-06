@@ -83,7 +83,3 @@ export const Sentence = styled.div`
   display: flex;
   gap: 0.2em;
 `;
-
-export const FlexContainer = styled.div`
-  display: flex;
-`;
