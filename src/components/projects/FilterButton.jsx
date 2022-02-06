@@ -40,14 +40,13 @@ const FilterButton = ({ setSettings, settings, name }) => {
   return (
     <Button
       onClick={(e) => {
-        filter(e.target.value);
+        filter(e.target.title);
         setActive((prev) => !prev);
       }}
       value={name}
       active={active}
     >
       <DevelopmentIcon name={name} size={"3em"} />
-      {/*{name}*/}
     </Button>
   );
 };
