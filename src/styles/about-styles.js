@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components/macro";
 
 const FloatUp = keyframes`
   0% {
@@ -31,19 +31,14 @@ export const Paragraph = styled.p`
   text-align: ${({ first }) => (!first ? "left" : "right")};
   font-size: 0.9em;
   align-self: center;
-  //height: 0;
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
-  //position: absolute;
-  //top: 0;
-  //bottom: 0;
   padding: 2em 1em;
   max-width: 700px;
-  //height: 80%;
   max-height: 600px;
 `;
 
@@ -73,7 +68,7 @@ export const TextBorder = styled.div`
   margin: ${({ left }) => (left ? `0 0.33em 0 0.5em` : `0 0.5em 0 0.4em`)};
 `;
 
-export const ContentContainer = styled.div`
+export const ContentContainer = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;

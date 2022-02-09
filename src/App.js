@@ -5,56 +5,44 @@ import { Projects } from "./components/Projects";
 import { Contact } from "./components/Contact";
 import projectsData from "./ProjectsData";
 import "./styles/global/font-styles.css";
-import {
-  AboutContainer,
-  ContactContainer,
-  List,
-  Navbar,
-  NavbarItem,
-  Page,
-  ProjectsContainer,
-} from "./styles/app-styles";
+import { AnimatePresence } from "framer-motion";
+import { Background } from "./styles/app-styles";
+import { Route, useLocation } from "react-router-dom";
+import { Routes } from "react-router";
+import { Container } from "./styles/global/GlobalStyles";
+import Layout from "./components/Layout";
 
 function App() {
+  let location = useLocation();
+
   return (
     <Theme>
-      <div id={"home"}>
-        <AboutContainer id={"about"}>
-          <ProjectsContainer id={"projects"}>
-            <ContactContainer id={"contact"}>
-              <Navbar id={"menu"}>
-                <List>
-                  <a href={"#home"}>
-                    <NavbarItem id={"uno"}>Home</NavbarItem>
-                  </a>
-                  <a href={"#about"}>
-                    <NavbarItem id={"dos"}>About</NavbarItem>
-                  </a>
-                  <a href={"#projects"}>
-                    <NavbarItem id={"tres"}>Projects</NavbarItem>
-                  </a>
-                  <a href={"#contact"}>
-                    <NavbarItem id={"cuatro"}>Contact</NavbarItem>
-                  </a>
-                </List>
-              </Navbar>
-              <Page color={"darkslateblue"} home id={"p1"}>
-                <Greeting />
-              </Page>
-
-              <Page className={"page"} color={"tomato"} id={"p2"}>
-                <AboutMe />
-              </Page>
-              <Page className={"page"} color={"rebeccapurple"} id={"p3"}>
-                <Projects data={projectsData} />
-              </Page>
-              <Page className={"page"} color={"gold"} id={"p4"}>
-                <Contact />
-              </Page>
-            </ContactContainer>
-          </ProjectsContainer>
-        </AboutContainer>
-      </div>
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <Routes location={location} key={location.pathname}>
+          <Route path={"/"} element={<Layout />}>
+            <Route index element={<Greeting />} />
+            />
+            <Route path={"/about"} element={<AboutMe />} />
+            <Route
+              path={"/projects"}
+              element={<Projects data={projectsData} />}
+            />
+            <Route path={"/contact"} element={<Contact />} />
+          </Route>
+          <Route path={"/projects/:name"} element={<Container />} />
+          <Route
+            path={"*"}
+            element={
+              <Container
+                style={{ transform: "translateY(0%)" }}
+                color={"black"}
+              >
+                <Background style={{ top: "-20%" }}>S</Background>
+              </Container>
+            }
+          />
+        </Routes>
+      </AnimatePresence>
     </Theme>
   );
 }

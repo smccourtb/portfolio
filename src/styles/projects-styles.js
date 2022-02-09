@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { Container } from "./global/GlobalStyles";
 
 export const ProjectContainer = styled.div`
@@ -33,7 +33,6 @@ export const OuterProjectContainer = styled.div`
 `;
 
 export const ProjectsContainer = styled(Container)`
-  height: 90vh;
   align-items: center;
   justify-content: center;
 `;

@@ -21,7 +21,7 @@ const projectData = [
     links: {
       Live: "https://smccourtb.github.io/memory-game/",
       Code: "https://github.com/smccourtb/memory-game",
-      Docs: "/",
+      Docs: "memory",
     },
   },
   {
@@ -55,7 +55,7 @@ const projectData = [
     links: {
       Live: "https://smccourtb.github.io/rock-paper-scissors/",
       Code: "https://github.com/smccourtb/rock-paper-scissors",
-      Docs: "/",
+      Docs: "rock-paper-scissors",
     },
   },
   {
@@ -72,7 +72,7 @@ const projectData = [
     links: {
       Live: "/",
       Code: "https://github.com/smccourtb/weather-app",
-      Docs: "/",
+      Docs: "weather",
     },
   },
   {
@@ -89,7 +89,7 @@ const projectData = [
     links: {
       Live: "https://smccourtb.github.io/audiophile-ecommerce-website/",
       Code: "https://www.github.com/smccourtb/audiophile-ecommerce-website/",
-      Docs: "/",
+      Docs: "audiophile",
     },
   },
   {

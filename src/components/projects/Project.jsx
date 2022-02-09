@@ -8,6 +8,7 @@ import {
   ProjectContainer,
   ProjectTitle,
 } from "../../styles/project-styles";
+import { Link } from "react-router-dom";
 
 const pickColor = (obj) => {
   const keys = Object.keys(obj);
@@ -28,7 +29,7 @@ export const Project = ({ projectData }) => {
       <Back image={image} color={color}>
         <Content>
           {Object.keys(links).map((link, idx) => (
-            <Button color={color} key={idx * 12} as={"a"} href={links[link]}>
+            <Button color={color} key={idx * 12} as={Link} to={links[link]}>
               {link}
             </Button>
           ))}

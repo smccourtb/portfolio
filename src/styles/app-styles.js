@@ -1,17 +1,14 @@
-import styled from "styled-components";
-import { Container } from "./global/GlobalStyles";
+import styled from "styled-components/macro";
+import { Link } from "react-router-dom";
 
 export const Page = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
   color: #fff;
   overflow: hidden;
+  transform: ${({ active }) => (active ? `translateY(0)` : `translateY(200%)`)};
   background-color: ${({ color }) => color};
-  top: ${({ home }) => (home ? `0` : `200%`)};
-  transition: all 0.8s cubic-bezier(0.54, 0.35, 0.29, 0.99);
 `;
 
 export const Navbar = styled.nav`
@@ -26,6 +23,7 @@ export const Navbar = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: black;
 `;
 
 export const List = styled.ul`
@@ -35,7 +33,7 @@ export const List = styled.ul`
   gap: 1em;
 `;
 
-export const NavbarItem = styled.li`
+export const NavbarItem = styled(Link)`
   margin: 0.5em 0;
   transition: all 0.5s ease-out !important;
   color: #fff;
@@ -47,95 +45,15 @@ export const NavbarItem = styled.li`
   }
 `;
 
-export const ContactContainer = styled.div`
-  :target #p1 {
-    background: black;
-  }
-
-  :target #p1 ${Container} {
-    -webkit-filter: blur(3px);
-  }
-
-  :target ${NavbarItem} {
-    transform: scale(0.6);
-    transition-delay: 0.25s;
-  }
-
-  :target #cuatro {
-    transform: scale(1.2) !important;
-  }
-
-  // this makes the content of the page visible
-  :target #p4 ${Container} {
-    transform: translateX(0) !important;
-    transition-delay: 1s;
-  }
-
-  // this makes the page slide up into view
-  :target #p4 {
-    transform: translateY(-190%);
-    transition-delay: 0.4s !important;
-  }
-`;
-
-export const AboutContainer = styled.div`
-  :target #p1 {
-    background: black;
-  }
-
-  :target #p1 ${Container} {
-    -webkit-filter: blur(3px);
-  }
-
-  :target ${NavbarItem} {
-    transform: scale(0.6);
-    transition-delay: 0.25s;
-  }
-
-  :target #dos {
-    transform: scale(1.2) !important;
-  }
-
-  // this makes the content of the page visible
-  :target #p2 ${Container} {
-    transform: translateX(0) !important;
-    transition-delay: 1s;
-  }
-
-  // this makes the page slide up into view
-  :target #p2 {
-    transform: translateY(-190%);
-    transition-delay: 0.4s !important;
-  }
-`;
-
-export const ProjectsContainer = styled.div`
-  :target #p1 {
-    background: black;
-  }
-
-  :target #p1 ${Container} {
-    -webkit-filter: blur(3px);
-  }
-
-  :target ${NavbarItem} {
-    transform: scale(0.6);
-    transition-delay: 0.25s;
-  }
-
-  :target #tres {
-    transform: scale(1.2) !important;
-  }
-
-  // this makes the content of the page visible
-  :target #p3 ${Container} {
-    transform: translateX(0) !important;
-    transition-delay: 1s;
-  }
-
-  // this makes the page slide up into view
-  :target #p3 {
-    transform: translateY(-190%);
-    transition-delay: 0.4s !important;
-  }
+export const Background = styled.div`
+  font-size: 30em;
+  position: absolute;
+  opacity: 5%;
+  top: -35%;
+  left: 0;
+  right: 0;
+  font-family: "Rock Salt", serif;
+  color: whitesmoke;
+  filter: blur(3px);
+  align-self: center;
 `;
