@@ -2,7 +2,7 @@ import { Project } from "./projects/Project";
 import { Flipper, Flipped } from "react-flip-toolkit";
 import { useEffect, useState } from "react";
 import FilterButton from "./projects/FilterButton";
-import { FlexContainer, Header } from "../styles/global/GlobalStyles";
+import { FlexContainer, Header, variants } from "../styles/global/GlobalStyles";
 import { DevelopmentIcon } from "./projects/DevelopmentIcon";
 import {
   ButtonContainer,
@@ -62,7 +62,14 @@ export const Projects = ({ data }) => {
   };
 
   return (
-    <ProjectsContainer>
+    <ProjectsContainer
+      color={"rebeccapurple"}
+      initial="exit"
+      animate="enter"
+      exit="exit"
+      variants={variants}
+      layout
+    >
       <Header>Projects</Header>
       <ButtonContainer>
         <FlexContainer>{filterButtons()}</FlexContainer>

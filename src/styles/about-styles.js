@@ -68,7 +68,7 @@ export const TextBorder = styled.div`
   margin: ${({ left }) => (left ? `0 0.33em 0 0.5em` : `0 0.5em 0 0.4em`)};
 `;
 
-export const ContentContainer = styled.div`
+export const ContentContainer = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;

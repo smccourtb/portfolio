@@ -14,10 +14,17 @@ import {
   Logo,
   Opener,
 } from "../styles/contact-styles";
+import { variants } from "../styles/global/GlobalStyles";
 
 export const Contact = () => {
   return (
-    <ContactContainer>
+    <ContactContainer
+      color={"gold"}
+      initial="exit"
+      animate="enter"
+      exit="exit"
+      variants={variants}
+    >
       <ContactHeader>Contact</ContactHeader>
       <ContactContent>
         <Opener>If you'd like to reach out, I'd love to hear from you!</Opener>

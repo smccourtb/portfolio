@@ -2,7 +2,11 @@ import { Letter } from "./greeting/Letter";
 import { useState } from "react";
 import { Typing } from "./greeting/Typing";
 import ThreeDEffect from "./greeting/ThreeDEffect";
-import { Container, FlexContainer } from "../styles/global/GlobalStyles";
+import {
+  Container,
+  FlexContainer,
+  variants,
+} from "../styles/global/GlobalStyles";
 import {
   DrawnPronunciation,
   HandWritingContainer,
@@ -25,11 +29,15 @@ export const Greeting = () => {
 
   return (
     <Container
+      color={"darkslateblue"}
       onTouchMove={(e) =>
         setMovement((prev) => [e.touches[0].clientX, e.touches[0].clientY])
       }
       onMouseMove={(e) => setMovement((prev) => [e.clientX, e.clientY])}
-      home
+      initial="exit"
+      animate="enter"
+      exit="exit"
+      variants={variants}
     >
       <Trademark delay={"12.4s"}>S</Trademark>
       <OpeningHeader>
