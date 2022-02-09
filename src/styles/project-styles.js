@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from "styled-components/macro";
 
 export const ProjectContainer = styled.div`
   height: 100%;

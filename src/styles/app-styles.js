@@ -1,17 +1,14 @@
-import styled from "styled-components";
-import { Container } from "./global/GlobalStyles";
+import styled from "styled-components/macro";
+import { Link } from "react-router-dom";
 
 export const Page = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
   color: #fff;
   overflow: hidden;
+  transform: ${({ active }) => (active ? `translateY(0)` : `translateY(200%)`)};
   background-color: ${({ color }) => color};
-  top: ${({ home }) => (home ? `0` : `200%`)};
-  transition: all 0.8s cubic-bezier(0.54, 0.35, 0.29, 0.99);
 `;
 
 export const Navbar = styled.nav`

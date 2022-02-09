@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { Container } from "./global/GlobalStyles";
 
 export const ProjectContainer = styled.div`

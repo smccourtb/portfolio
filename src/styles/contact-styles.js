@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { Container, Header } from "./global/GlobalStyles";
 
 export const Footer = styled.div`

@@ -1,5 +1,6 @@
-import { createGlobalStyle } from "styled-components";
-import styled from "styled-components/macro";
+import styled, { createGlobalStyle } from "styled-components/macro";
+
+import { motion } from "framer-motion";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -45,23 +46,32 @@ export const Header = styled.h2`
   position: absolute;
 `;
 
-export const Container = styled.section`
+export const Container = styled(motion.section)`
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   text-align: center;
-  transform: ${({ home }) =>
-    home ? `translateY(10%) !important` : `translateY(360%)`};
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1.25);
   display: flex;
   flex-direction: column;
+  background-color: ${({ color }) => color};
+  transform: translateY(10%);
 `;
 
 export const FlexContainer = styled.div`
   display: flex;
   flex-direction: ${({ column }) => (column ? `column` : `row`)};
 `;
+
+export const transition = {
+  type: "spring",
+  stiffness: 45,
+};
+
+export const variants = {
+  exit: { y: "100%", transition },
+  enter: {
+    y: "10%",
+    opacity: 1,
+    transition,
+  },
+};
