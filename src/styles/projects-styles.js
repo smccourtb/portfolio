@@ -1,7 +1,8 @@
 import styled from "styled-components/macro";
 import { Container } from "./global/GlobalStyles";
+import { motion } from "framer-motion";
 
-export const ProjectContainer = styled.div`
+export const ProjectContainer = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
   min-width: 100%;
@@ -13,7 +14,7 @@ export const ProjectContainer = styled.div`
   padding: 2em;
 `;
 
-export const Div = styled.div`
+export const Div = styled(motion.div)`
   flex: 1 1;
 `;
 
