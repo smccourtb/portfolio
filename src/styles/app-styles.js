@@ -1,18 +1,8 @@
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 
-export const Page = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  overflow: hidden;
-  transform: ${({ active }) => (active ? `translateY(0)` : `translateY(200%)`)};
-  background-color: ${({ color }) => color};
-`;
-
 export const Navbar = styled.nav`
-  position: fixed;
+  position: absolute;
   z-index: 1;
   top: 0;
   margin: auto;
