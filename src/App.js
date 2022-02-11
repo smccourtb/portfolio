@@ -11,6 +11,7 @@ import { Route, useLocation } from "react-router-dom";
 import { Routes } from "react-router";
 import { Container } from "./styles/global/GlobalStyles";
 import Layout from "./components/Layout";
+import ProjectDocs from "./components/projects/ProjectDocs";
 
 function App() {
   let location = useLocation();
@@ -21,7 +22,6 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route path={"/"} element={<Layout />}>
             <Route index element={<Greeting />} />
-            />
             <Route path={"/about"} element={<AboutMe />} />
             <Route
               path={"/projects"}
@@ -29,7 +29,7 @@ function App() {
             />
             <Route path={"/contact"} element={<Contact />} />
           </Route>
-          <Route path={"/projects/:name"} element={<Container />} />
+          <Route path={"/projects/:name"} element={<ProjectDocs />} />
           <Route
             path={"*"}
             element={
