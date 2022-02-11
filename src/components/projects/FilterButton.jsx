@@ -16,19 +16,8 @@ const Button = styled.button`
   border-radius: 2.55px 2.5px 0 0;
 `;
 
-const FilterButton = ({ setSettings, name }) => {
+const FilterButton = ({ filter, name }) => {
   const [active, setActive] = useState(false);
-
-  const filter = (x) => {
-    setSettings((prev) => {
-      // check if its already in the filtered array
-      if (prev.includes(x)) {
-        return prev.filter((item) => item !== x);
-      } else {
-        return [...prev, x];
-      }
-    });
-  };
 
   return (
     <Button
