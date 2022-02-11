@@ -1,5 +1,4 @@
 import { theme } from "../../styles/global/Themes";
-import { useState } from "react";
 import {
   Back,
   Button,
@@ -8,7 +7,7 @@ import {
   ProjectContainer,
   ProjectTitle,
 } from "../../styles/project-styles";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const pickColor = (obj) => {
   const keys = Object.keys(obj);
@@ -16,7 +15,7 @@ const pickColor = (obj) => {
 };
 
 export const Project = ({ projectData }) => {
-  const [color] = useState(pickColor(theme.cardColors));
+  const color = pickColor(theme.cardColors);
   const { name, image, links } = { ...projectData };
   return (
     <ProjectContainer>
@@ -28,11 +27,22 @@ export const Project = ({ projectData }) => {
 
       <Back image={image} color={color}>
         <Content>
-          {Object.keys(links).map((link, idx) => (
-            <Button color={color} key={idx * 12} as={Link} to={links[link]}>
-              {link}
-            </Button>
-          ))}
+          {Object.keys(links).map((link, idx) =>
+            link === "Docs" ? (
+              <Button
+                color={color}
+                key={idx}
+                as={Link}
+                to={{ pathname: links[link] }}
+              >
+                {link}
+              </Button>
+            ) : (
+              <Button color={color} key={idx * 12} as={"a"} href={links[link]}>
+                {link}
+              </Button>
+            )
+          )}
         </Content>
       </Back>
     </ProjectContainer>
