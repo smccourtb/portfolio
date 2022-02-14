@@ -7,13 +7,13 @@ import Audiophile from "./assets/images/audiophile.png";
 const projectData = [
   {
     id: 0,
-    release: 20211231,
     name: "Memory",
     description:
       "Play a round of the classic game Memory. With a timed solo mode,\n" +
       "              or play with up to four players. Change the difficulty by upping\n" +
       "              the grid size or try out the symbols option.",
     image: Memory,
+    tag: "React",
     tools: {
       language: ["Javascript", "HTML 5", "CSS 3"],
       framework: ["Styled Components", "React"],
@@ -21,17 +21,16 @@ const projectData = [
     links: {
       Live: "https://smccourtb.github.io/memory-game/",
       Code: "https://github.com/smccourtb/memory-game",
-      Docs: "/",
+      Docs: "memory",
     },
   },
   {
     id: 1,
-    release: 20211216,
-
     name: "Todo List",
     description:
       "Jot down your thoughts. Rearrange your tasks by dragging the task to the order you'd like. Filter through what you've completed, and what you still need to do.",
     image: ToDo,
+    tag: "React",
     tools: {
       language: ["Javascript", "HTML 5", "CSS 3"],
       framework: ["Styled Components", "React"],
@@ -44,12 +43,11 @@ const projectData = [
   },
   {
     id: 2,
-    release: 20211206,
-
     name: "Rock Paper Scissors",
     description:
       "Play a round of rock, paper, scissors! Play against the computer with the classic version, or the new take, rock, paper, scissors, lizard, spock!",
     image: RockPaperScissors,
+    tag: "React",
     tools: {
       language: ["Javascript", "HTML 5", "CSS 3"],
       framework: ["React"],
@@ -57,17 +55,16 @@ const projectData = [
     links: {
       Live: "https://smccourtb.github.io/rock-paper-scissors/",
       Code: "https://github.com/smccourtb/rock-paper-scissors",
-      Docs: "/",
+      Docs: "rock-paper-scissors",
     },
   },
   {
     id: 3,
-    release: 20211110,
-
     name: "Weather",
     description:
       "Weather app with a hourly and daily forecast. Uses OpenWeatherAPI",
     image: Weather,
+    tag: "Javascript",
     tools: {
       language: ["Javascript", "HTML 5", "CSS 3"],
       framework: [],
@@ -75,16 +72,16 @@ const projectData = [
     links: {
       Live: "/",
       Code: "https://github.com/smccourtb/weather-app",
-      Docs: "/",
+      Docs: "weather",
     },
   },
   {
     id: 4,
-    release: 20220121,
     name: "Audiophile",
     description:
       "Mock website where you can browse and 'purchase' audio related products. Has a working shopping cart and form validation",
     image: Audiophile,
+    tag: "React",
     tools: {
       language: ["Javascript", "HTML 5", "CSS 3"],
       framework: ["React", "Styled Components"],
@@ -92,15 +89,15 @@ const projectData = [
     links: {
       Live: "https://smccourtb.github.io/audiophile-ecommerce-website/",
       Code: "https://www.github.com/smccourtb/audiophile-ecommerce-website/",
-      Docs: "/",
+      Docs: "audiophile",
     },
   },
   {
     id: 5,
-    release: 20211208,
     name: "Bones",
     description: "A small dice battle game with rpg elements.",
     image: Audiophile,
+    tag: "GDScript",
     tools: {
       language: ["GDScript"],
       framework: [],

@@ -1,197 +1,177 @@
-import { SiCss3, SiHtml5, SiJavascript, SiReact } from "react-icons/si";
-import Slide from "./Slide";
-import { Header } from "../styles/shared-styles";
-import styled, { css, keyframes } from "styled-components";
-import { useState } from "react";
+import { Container, Header, variants } from "../styles/global/GlobalStyles";
+import {
+  ContentContainer,
+  ContentGrid,
+  ContentGridContentContainer,
+  Paragraph,
+  Snippet,
+  Strikethrough,
+} from "../styles/about-styles";
+import { motion } from "framer-motion";
+import { Icon } from "@iconify/react";
 
-const FloatUp = keyframes`
-  0% {
-    transform: translateY(500%);
-  }
-  50% {
-    opacity: 100%;
-  }
-  100% {
-    transform: translateY(-200%);
-  }
-`;
+const techIconData = [
+  { name: "akar-icons:javascript-fill", size: "3em" },
+  { name: "simple-icons:html5", size: "1em" },
+  { name: "simple-icons:css3", size: "1em" },
+  { name: "akar-icons:react-fill", size: "2em" },
+  { name: "simple-icons:styledcomponents", size: "1.5em" },
+  { name: "simple-icons:webstorm", size: "1.5em" },
+  { name: "simple-icons:webpack", size: "1.5em" },
+  { name: "bxl:git", size: "1.5em" },
+  { name: "akar-icons:github-fill", size: "1.5em" },
+  { name: "fontisto:trello", size: "1.5em" },
+];
 
-const AnimContainer = styled.div`
-  animation: ${({ delay, speed }) =>
-    css`
-      ${FloatUp} ${speed}s ${delay}s infinite linear
-    `};
-  position: relative;
-  opacity: 0;
-  z-index: 2;
-  left: ${({ position }) => `${position}em`};
+const hobbyIconData = [
+  { name: "bx:bx-cycling", size: "1em" },
+  { name: "fluent:guitar-24-filled", size: "3em" },
+  { name: "ic:baseline-hiking", size: "1em" },
+  { name: "fa-solid:dice-d20", size: "2em" },
+  { name: "dashicons:games", size: "1.5em" },
+];
 
-  :hover {
-    animation-play-state: paused;
-  }
-`;
-const Paragraph = styled.p`
-  text-align: ${({ first }) => (!first ? "left" : "right")};
-  font-size: 0.9em;
-  align-self: center;
-  //height: 0;
-`;
+const ranNum = (min, max) => {
+  return Math.random() * (max - min) + min;
+};
 
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  padding: 2em 1em;
-  max-width: 700px;
-  height: 70vh;
-`;
+const up = {
+  visible: (ranNum) => {
+    const xValue = ranNum(5, 10);
+    return {
+      translateY: ["100%", "-900%"],
+      translateX: [-xValue, xValue, -xValue],
+      transition: {
+        delay: ranNum(3, 10),
+        duration: 15,
+        repeat: Infinity,
+        translateX: {
+          duration: ranNum(3, 6),
+          type: "spring",
+          repeat: Infinity,
+        },
+      },
+    };
+  },
+};
+const down = {
+  visible: (ranNum) => {
+    const xValue = ranNum(5, 10);
+    return {
+      translateY: ["-100%", "900%"],
+      translateX: [-xValue, xValue, -xValue],
+      transition: {
+        delay: ranNum(3, 10),
+        duration: 15,
+        repeat: Infinity,
+        translateX: {
+          duration: ranNum(3, 6),
+          type: "spring",
+          repeat: Infinity,
+        },
+      },
+    };
+  },
+};
 
-const UpperRight = styled.div`
-  position: absolute;
-  top: 0;
-  left: 55%;
-  width: 45%;
-  height: 100%;
-`;
-
-const Strikethrough = styled.span`
-  text-decoration: line-through;
-`;
-
-const Snippet = styled.span`
-  font-style: italic;
-  font-weight: bold;
-  position: absolute;
-  bottom: 10em;
-  left: 0;
-  right: 0;
-  padding: 0 3em;
-`;
-
-const Row = styled.div`
-  display: flex;
-  height: 100%;
-`;
-
-const TextBorder = styled.div`
-  width: 100%;
-  ${({ right }) => right && `border-left: .3em solid white`};
-  ${({ left }) => left && `border-right: .3em solid white`};
-  margin: ${({ left }) => (left ? `0 0.33em 0 0.5em` : `0 0.5em 0 0.4em`)};
-`;
-
-const Tooltip = styled.div`
-  //display: inline;
-  position: relative;
-
-  :hover:after {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-    justify-content: center;
-    background: #444;
-    border-radius: 8px;
-    color: #fff;
-    position: absolute;
-    content: attr(title);
-    margin: -82px auto 0;
-    font-size: 16px;
-    padding: 13px;
-    width: 220px;
-  }
-
-  :hover:before {
-    border: solid;
-    border-color: #444 transparent;
-    border-width: 12px 6px 0 6px;
-    content: "";
-    left: 45%;
-    bottom: 30px;
-    position: absolute;
-  }
-`;
 export const AboutMe = () => {
-  const [active, setActive] = useState(false);
-  const ranNum = (min, max) => {
-    return Math.random() * (max - min) + min;
+  const floatingIcons = (iconList, direction) => {
+    return iconList.map((item) => (
+      <motion.p
+        key={item.name}
+        style={{ position: "absolute", left: `${ranNum(10, 90)}%` }}
+        animate={"visible"}
+        variants={direction === "up" ? up : down}
+        custom={ranNum}
+        inital={{
+          x: `${ranNum(-900, 90)}%`,
+        }}
+      >
+        <Icon width={item.size} icon={item.name} />
+      </motion.p>
+    ));
   };
+
   return (
-    <div className={"icon"} onTransitionEnd={() => setActive((prev) => !prev)}>
+    <Container
+      color={"tomato"}
+      initial="exit"
+      animate="enter"
+      exit="exit"
+      variants={variants}
+      layout
+    >
       <Header>About</Header>
 
-      {active ? (
-        <Content>
-          <Slide direction={"up"} delay={0.5}>
-            <Row>
-              <Slide direction={"left"} delay={1.2}>
-                <Paragraph first>
-                  Hi, I'm Shawn! I started down this path seeing all these
-                  amazing websites and getting{" "}
-                  <Strikethrough>jealous</Strikethrough> curious about how they
-                  were made. The world is challenging, exciting, frustrating and
-                  everything rolled into one. Every day is an opportunity to
-                  learn something new, and I love bringing new ideas to life.
-                </Paragraph>
-              </Slide>
-              <TextBorder right />
-              <UpperRight>
-                <AnimContainer
-                  position={ranNum(-5, 5)}
-                  delay={ranNum(5, 7)}
-                  speed={ranNum(9, 12)}
-                >
-                  <Tooltip title="Javascript">
-                    <SiJavascript size={"3em"} />
-                  </Tooltip>
-                </AnimContainer>
-                <AnimContainer
-                  position={ranNum(-5, 5)}
-                  delay={ranNum(5, 7)}
-                  speed={ranNum(9, 12)}
-                >
-                  <SiReact size={"2em"} />
-                </AnimContainer>
-                <AnimContainer
-                  position={ranNum(-5, 5)}
-                  delay={ranNum(5, 7)}
-                  speed={ranNum(9, 12)}
-                >
-                  <SiHtml5 size={"1em"} />
-                </AnimContainer>
-                <AnimContainer
-                  position={ranNum(-5, 5)}
-                  delay={ranNum(5, 7)}
-                  speed={ranNum(9, 12)}
-                >
-                  <SiCss3 size={"1em"} />
-                </AnimContainer>
-              </UpperRight>
-            </Row>
-          </Slide>
-          <Slide direction={"down"} delay={0.5}>
-            {" "}
-            <Row>
-              <TextBorder left />
+      <ContentContainer>
+        <ContentGrid>
+          <ContentGridContentContainer>
+            <Paragraph
+              first={"true"}
+              animate={{ x: ["100%", "0%"] }}
+              transition={{ delay: 2 }}
+            >
+              Hi, I'm Shawn! I started down this path seeing all these amazing
+              websites and getting <Strikethrough>jealous</Strikethrough>{" "}
+              curious about how they were made. The world is challenging,
+              exciting, frustrating and everything rolled into one. Every day is
+              an opportunity to learn something new, and I love bringing new
+              ideas to life.
+            </Paragraph>
+          </ContentGridContentContainer>
+          <ContentGridContentContainer>
+            <motion.div
+              animate={{ y: ["100%", "0%"] }}
+              transition={{ delay: 1 }}
+              style={{
+                backgroundColor: "whitesmoke",
+                height: "100%",
+                width: "100%",
+              }}
+            />
+          </ContentGridContentContainer>
+          <ContentGridContentContainer
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-end",
+            }}
+          >
+            {floatingIcons(techIconData, "up")}
+          </ContentGridContentContainer>
+          <ContentGridContentContainer>
+            {floatingIcons(hobbyIconData, "down")}
+          </ContentGridContentContainer>
+          <ContentGridContentContainer>
+            <motion.div
+              animate={{ y: ["-100%", "0%"] }}
+              transition={{ delay: 1 }}
+              style={{
+                backgroundColor: "whitesmoke",
+                height: "100%",
+                width: "100%",
+              }}
+            />
+          </ContentGridContentContainer>
 
-              <Slide direction={"right"} delay={1.2}>
-                <Paragraph>
-                  When i'm not working, you can find me trying to keep up with
-                  my 3 boys, playing board games with friends, jamming out on my
-                  acoustic-campfire style, or belly-laughing with my{" "}
-                  <Strikethrough>best friend</Strikethrough> wife. Life is busy
-                  but short, and I try to spend everyday improving myself.
-                </Paragraph>
-              </Slide>
-            </Row>
-          </Slide>
-        </Content>
-      ) : (
-        <Content />
-      )}
+          <ContentGridContentContainer>
+            <Paragraph
+              animate={{ x: ["-100%", "0%"] }}
+              transition={{ delay: 2 }}
+            >
+              When i'm not working, you can find me trying to keep up with my 3
+              boys, playing board games with friends, jamming out on my
+              acoustic-campfire style, or belly-laughing with my{" "}
+              <Strikethrough>best friend</Strikethrough> wife. Life is busy but
+              short, and I try to spend everyday improving myself.
+            </Paragraph>
+          </ContentGridContentContainer>
+        </ContentGrid>
+      </ContentContainer>
 
       <Snippet>
         I'm looking to join a team of like-minded people to learn and grow with.
       </Snippet>
-    </div>
+    </Container>
   );
 };

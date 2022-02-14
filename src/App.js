@@ -1,56 +1,48 @@
-import Theme from "./styles/Themes";
-
+import Theme from "./styles/global/Themes";
 import { Greeting } from "./components/Greeting";
 import { AboutMe } from "./components/AboutMe";
 import { Projects } from "./components/Projects";
 import { Contact } from "./components/Contact";
 import projectsData from "./ProjectsData";
-import "./styles/test.css";
+import "./styles/global/font-styles.css";
+import { AnimatePresence } from "framer-motion";
+import { Background } from "./styles/app-styles";
+import { Route, useLocation } from "react-router-dom";
+import { Routes } from "react-router";
+import { Container } from "./styles/global/GlobalStyles";
+import Layout from "./components/Layout";
+import ProjectDocs from "./components/projects/ProjectDocs";
 
 function App() {
+  let location = useLocation();
+
   return (
     <Theme>
-      <div id={"t1"}>
-        <div id={"t2"}>
-          <div id={"t3"}>
-            <div id={"t4"}>
-              <ul id={"menu"}>
-                <a href={"#t1"}>
-                  <li className="icon">Home</li>
-                </a>
-                <a href={"#t2"}>
-                  <li className="icon" id={"dos"}>
-                    About
-                  </li>
-                </a>
-                <a href={"#t3"}>
-                  <li className="icon" id={"tres"}>
-                    Projects
-                  </li>
-                </a>
-                <a href={"#t4"}>
-                  <li className="icon" id={"cuatro"}>
-                    Contact
-                  </li>
-                </a>
-              </ul>
-              <div className={"page"} id={"p1"}>
-                <Greeting />
-              </div>
-
-              <div className={"page"} id={"p2"}>
-                <AboutMe />
-              </div>
-              <div className={"page"} id={"p3"}>
-                <Projects data={projectsData} />
-              </div>
-              <div className={"page"} id={"p4"}>
-                <Contact />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <Routes location={location} key={location.pathname}>
+          <Route path={"/"} element={<Layout />}>
+            <Route index element={<Greeting />} />
+            <Route path={"/about"} element={<AboutMe />} />
+            <Route
+              path={"/projects"}
+              element={<Projects data={projectsData} />}
+            />
+            <Route path={"/contact"} element={<Contact />} />
+          </Route>
+          <Route path={"/projects/:name"} element={<ProjectDocs />} />
+          <Route
+            path={"*"}
+            element={
+              <Container
+                style={{ transform: "translateY(0%)" }}
+                color={"black"}
+              >
+                <Background style={{ top: "-20%" }}>S</Background>
+              </Container>
+            }
+          />
+        </Routes>
+      </AnimatePresence>
     </Theme>
   );
 }

@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components/macro";
-import { css } from "styled-components";
 
 const slideAnim = (direction) => keyframes`
   0% {
@@ -25,13 +24,10 @@ const Container = styled.div`
 
 const Content = styled.div`
   position: relative;
-  opacity: 0;
   height: 100%;
   display: flex;
-  animation: ${({ direction, delay }) =>
-    css`
-      ${slideAnim(`${direction}`)} ease .4s forwards ${delay}s
-    `};
+  animation: ${({ direction }) => `${slideAnim(direction)} forwards`};
+  animation-delay: ${({ delay }) => delay};
 `;
 
 const Slide = ({ direction, delay, children }) => {

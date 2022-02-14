@@ -50,7 +50,7 @@ const showText = keyframes`
   }
 `;
 
-const TypedOut = styled.div`
+export const TypedOut = styled.div`
   font-family: inherit;
   overflow: hidden;
   border-right: 0.1em solid orange;
@@ -60,7 +60,7 @@ const TypedOut = styled.div`
     ${blink} 0.8s infinite, ${byeCaret} 0.2s 2.4s forwards;
 `;
 
-const FinishType = styled.div`
+export const FinishType = styled.div`
   overflow: hidden;
   font-family: inherit;
   border-right: 0.1em solid orange;
@@ -69,7 +69,7 @@ const FinishType = styled.div`
     ${blink} 0.8s infinite, ${byeCaret} 0.2s 6.3s forwards;
 `;
 
-const AutoComplete = styled.div`
+export const AutoComplete = styled.div`
   font-family: inherit;
   opacity: 0;
   width: 0;
@@ -77,35 +77,12 @@ const AutoComplete = styled.div`
   z-index: -2;
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   font-family: inherit;
-  //display: inline-block;
 `;
 
-export const Typing = ({ setState }) => {
-  return (
-    <div
-      style={{
-        fontFamily: "Paytone One",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <Container>
-        <TypedOut>Shawn</TypedOut>
-      </Container>
-      <Container>
-        <AutoComplete
-          onAnimationEnd={(e) => {
-            setState(true);
-          }}
-        >
-          athan.
-        </AutoComplete>
-      </Container>
-      <Container>
-        <FinishType>athan.</FinishType>
-      </Container>
-    </div>
-  );
-};
+export const TypingContainer = styled.div`
+  font-family: "Paytone One", serif;
+  display: flex;
+  align-items: center;
+`;

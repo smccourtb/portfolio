@@ -1,9 +1,6 @@
-import styled from "styled-components/macro";
-import { theme } from "../styles/Themes";
-import { css } from "styled-components";
-import { useState } from "react";
+import styled, { css } from "styled-components/macro";
 
-const ProjectContainer = styled.div`
+export const ProjectContainer = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
@@ -18,7 +15,7 @@ const ProjectContainer = styled.div`
   }
 `;
 
-const Front = styled.div`
+export const Front = styled.div`
   z-index: 2;
   width: 100%;
   height: 100%;
@@ -44,7 +41,7 @@ const Front = styled.div`
   }
 `;
 
-const Back = styled.div`
+export const Back = styled.div`
   z-index: 0;
   width: 100%;
   height: 100%;
@@ -71,7 +68,7 @@ const Back = styled.div`
   }
 `;
 
-const Content = styled.div`
+export const Content = styled.div`
   transform: translatez(5em) scale(0.8);
   display: flex;
   align-items: flex-end;
@@ -80,7 +77,7 @@ const Content = styled.div`
   height: 100%;
 `;
 
-const ProjectTitle = styled.h3`
+export const ProjectTitle = styled.h3`
   text-transform: uppercase;
   color: whitesmoke;
   font-family: "Paytone One", serif;
@@ -89,10 +86,9 @@ const ProjectTitle = styled.h3`
   padding-right: 5em;
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   background-color: white;
   border: ${({ color }) => color && `2px solid ${color.primary}`};
-
   border-radius: 2px;
   color: ${({ color }) => color && `${color.primary}`};
   font-size: 1em;
@@ -105,38 +101,7 @@ const Button = styled.button`
 
   :hover {
     color: white;
-    //border: 2px solid white;
     background-color: ${({ color }) => color && `${color.primary}`};
-
     transform: scale(110%);
   }
 `;
-
-const pickColor = (obj) => {
-  const keys = Object.keys(obj);
-  return obj[keys[(keys.length * Math.random()) << 0]];
-};
-
-export const Project = ({ projectData }) => {
-  const [color] = useState(pickColor(theme.cardColors));
-  const { name, image, links } = { ...projectData };
-  return (
-    <ProjectContainer>
-      <Front image={image} color={color}>
-        <Content>
-          <ProjectTitle>{name}</ProjectTitle>
-        </Content>
-      </Front>
-
-      <Back image={image} color={color}>
-        <Content>
-          {Object.keys(links).map((link, idx) => (
-            <Button color={color} key={idx * 12} as={"a"} href={links[link]}>
-              {link}
-            </Button>
-          ))}
-        </Content>
-      </Back>
-    </ProjectContainer>
-  );
-};

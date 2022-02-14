@@ -1,4 +1,4 @@
-import "../styles/threed-styles.css";
+import "../../styles/threed-styles.css";
 import { useCallback, useEffect } from "react";
 
 const ThreeDEffect = ({ move }) => {
