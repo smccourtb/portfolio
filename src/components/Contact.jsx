@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import ContactForm from "./contact/ContactForm";
 import LinkedInIcon from "../assets/icons/linkedin.svg";
 import GithubIcon from "../assets/icons/github-icon.svg";

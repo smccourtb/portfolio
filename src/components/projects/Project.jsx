@@ -7,7 +7,7 @@ import {
   ProjectContainer,
   ProjectTitle,
 } from "../../styles/project-styles";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const pickColor = (obj) => {
   const keys = Object.keys(obj);
